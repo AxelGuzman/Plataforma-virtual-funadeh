@@ -13,5 +13,9 @@ namespace Inspinia_MVC5.Controllers
         {
             return View();
         }
+        public ActionResult Cursos()
+        {
+            return View();
+        }
     }
 }
