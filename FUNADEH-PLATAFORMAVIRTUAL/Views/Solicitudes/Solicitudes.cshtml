@@ -19,18 +19,19 @@
                         <thead>
                             <tr role="row">
                                 <th>Nombre Completo</th>
-                                <th>Usuario</th>
                                 <th>Programa</th>
+                                <th>Estado</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                         <td>Allan Guillermo Bennett</td>
-                        <td>AllanB27</td>
                         <td>Emprendimiento</td>
+                        <td>En Proceso</td>
                         <td>
                             <input type="button" id="btnDetalle" class="btn btn-primary btn-xs" value="Detalle" />
                             <a href=@Url.Action("Cursos","Solicitudes")><input type="button" id="btnDetalle" class="btn btn-success btn-xs" value="Aceptar" /></a>
+                            <input type="button" id="btnDetalle" class="btn btn-danger btn-xs" value="Rechazar" />
                         </td>
                         </tbody>
                     </table>
