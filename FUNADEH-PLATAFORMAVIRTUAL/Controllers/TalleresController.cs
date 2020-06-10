@@ -12,6 +12,7 @@ namespace Inspinia_MVC5.Controllers
         public ActionResult Talleres()
         {
             return View();
+
         }
     }
 }
