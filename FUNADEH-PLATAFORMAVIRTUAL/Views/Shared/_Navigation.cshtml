@@ -1,0 +1,53 @@
+﻿<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element">
+                    <span>
+                        <img alt="image" class="img-circle" src="~/Images/profile_small.jpg" />
+                    </span>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <span class="clear">
+                            <span class="block m-t-xs">
+                                <strong class="font-bold">David Williams</strong>
+                            </span> <span class="text-muted text-xs block">Art Director <b class="caret"></b></span>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                        <li><a href="@Url.Action("Profile", "AppViews")">Profile</a></li>
+                        <li><a href="@Url.Action("Contacts", "AppViews")">Contacts</a></li>
+                        <li><a href="@Url.Action("Inbox", "Mailbox")">Mailbox</a></li>
+                        <li class="divider"></li>
+                        <li><a href="@Url.Action("Login", "Pages")">Logout</a></li>
+                    </ul>
+                </div>
+                <div class="logo-element">
+                    IN+
+                </div>
+            </li>
+            <li class="@Html.IsSelected(controller: "MenuPrincipal")">
+                <a href="@Url.Action("MenuPrincipal", "MenuPrincipal")"><i class="fa fa-home"></i> <span class="nav-label" data-i18n="nav.layouts">Menú Principal</span> </a>
+            </li>
+
+            <li class="@Html.IsSelected(controller: "Layouts")">
+                <a href="@Url.Action("MenuCursos", "Layouts")"><i class="fa fa-trophy"></i> <span class="nav-label" data-i18n="nav.layouts">Mis Cursos</span> </a>
+            </li>
+
+            <li class="@Html.IsSelected(controller: "Beneficiarios")">
+                <a href="@Url.Action("Index", "Beneficiarios")"><i class="fa fa-users"></i> <span class="nav-label" data-i18n="nav.layouts">Beneficiarios</span> </a>
+            </li>
+
+            <li class="@Html.IsSelected(controller: "Solicitudes")">
+                <a href="@Url.Action("Solicitudes", "Solicitudes")"><i class="fa fa-bell"></i> <span class="nav-label" data-i18n="nav.layouts">Solicitudes</span> </a>
+            </li>
+
+            <li class="@Html.IsSelected(controller: "Metrics")">
+                <a href="@Url.Action("Index", "Metrics")"><i class="fa fa-envelope-o"></i> <span class="nav-label" data-i18n="nav.metrics">Foros o Conferencias</span> </a>
+            </li>
+            <li class="@Html.IsSelected(controller: "Widgets")">
+                <a href="@Url.Action("Index", "Widgets")"><i class="fa fa-gears"></i> <span class="nav-label" data-i18n="nav.widgets">Configuracion del perfil</span> </a>
+            </li>
+
+        </ul>
+    </div>
+</nav>
