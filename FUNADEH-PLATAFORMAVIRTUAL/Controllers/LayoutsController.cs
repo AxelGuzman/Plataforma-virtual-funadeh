@@ -23,13 +23,13 @@ namespace Inspinia_MVC5.Controllers
         {
             return View();
         }
-         /*public ActionResult MenuPrincipal()
+         public ActionResult VideoCursos()
         {
             return View();
         }
-       public ActionResult Taller()
-        {
-            return View();
-        }*/
+        /* public ActionResult Taller()
+          {
+              return View();
+          }*/
     }
 }
