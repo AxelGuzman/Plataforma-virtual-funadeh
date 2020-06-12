@@ -7,12 +7,157 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registros</title>
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <link href="~/Content/animate.css" rel="stylesheet">
+    <link href="~/Content/style.css" rel="stylesheet">
 </head>
-<body>
-    <div> 
-        <h5>QUE PEDO</h5>
+<body class="gray-bg">
+    <br /><br />
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h2>Registro | <small>Ficha de Beneficiario</small></h2>
+            </div>
+            <br />
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="col-sm-2">
+                        <h3>Datos Personales</h3>
+                    </div>
+                </nav>
+            </div>
+            <div class="ibox-content">
+                <form method="get" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">Identidad</label>
+                        <div class="col-sm-5"><input type="text" class="form-control" placeholder="No Incluya Guiones"></div>
+                        <label class="col-sm-1 control-label">Nivel Académico</label>
+                        <div class="col-sm-5">
+                            <select class="select2_demo_1 form-control select2-hidden-accessible col-sm-5" tabindex="-1" aria-hidden="true">
+                                <option value="0">**Seleccione una Opción**</option>
+                                <option value="1">Primaria</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">Nombres</label>
+                        <div class="col-sm-5"><input type="text" class="form-control"></div>
+                        <label class="col-sm-1 control-label">Programa</label>
+                        <div class="col-sm-5">
+                            <select class="select2_demo_1 form-control select2-hidden-accessible col-sm-5" tabindex="-1" aria-hidden="true">
+                                <option value="0">**Seleccione una Opción**</option>
+                                <option value="1">Emprendimiento</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">Apellidos</label>
+                        <div class="col-sm-5"><input type="text" class="form-control"></div>
+                        <label class="col-sm-1">¿Usted es Voluntario?</label>
+                        <div class="col-sm-5"><input type="checkbox" class="checkbox-default" /></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">Fecha Nacimiento</label>
+                        <div class="col-sm-5">
+                            <div class="input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="10/11/2013" />
+                            </div>
+                        </div>
+                        <label class="col-sm-1 control-label">CDA</label>
+                        <div class="col-sm-5">
+                            <select class="select2_demo_1 form-control select2-hidden-accessible col-sm-5" tabindex="-1" aria-hidden="true">
+                                <option value="0">**Seleccione una Opción**</option>
+                                <option value="1">Las Palmas</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">Sexo</label>
+                        <div class="col-sm-5">
+                            <select class="select2_demo_1 form-control select2-hidden-accessible col-sm-5" tabindex="-1" aria-hidden="true">
+                                <option value="0">**Seleccione una Opción**</option>
+                                <option value="1">Masculino</option>
+                                <option value="1">Femenino</option>
+                            </select>
+                        </div>
+                        <label class="col-sm-1">¿Usted es Ex Miembro Pandilla?</label>
+                        <div class="col-sm-5"><input type="checkbox" class="checkbox-default" /></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">Correo Electrónico</label>
+                        <div class="col-sm-5"><input type="text" class="form-control"></div>
+                        <label class="col-sm-1">¿Usted Ha Migrado?</label>
+                        <div class="col-sm-5"><input type="checkbox" class="checkbox-default" /></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">Teléfono</label>
+                        <div class="col-sm-5"><input type="text" class="form-control" placeholder="+504 0000-00000"></div>
+                        <label class="col-sm-1">¿Tiene Intenciones de Emigrar?</label>
+                        <div class="col-sm-5"><input type="checkbox" class="checkbox-default" /></div>
+                    </div>
+                    <div class="row border-bottom">
+                        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                            <div class="col-sm-2">
+                                <br />
+                                <h3>Residencia</h3>
+                            </div>
+                        </nav>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">Departamento</label>
+                        <div class="col-sm-5">
+                            <select class="select2_demo_1 form-control select2-hidden-accessible col-sm-5" tabindex="-1" aria-hidden="true">
+                                <option value="0">**Seleccione una Opción**</option>
+                                <option value="1">Cortés</option>
+                            </select>
+                        </div>
+                        <label class="col-sm-1 control-label">Dirección </label>
+                        <div class="col-sm-5">
+                            <textarea width="349px" height="94px" style="margin: 0px; width: 449px; height: 80px;"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">Municipio</label>
+                        <div class="col-sm-5">
+                            <select class="select2_demo_1 form-control select2-hidden-accessible col-sm-5" tabindex="-1" aria-hidden="true">
+                                <option value="0">**Seleccione una Opción**</option>
+                                <option value="1">San Pedro Sula</option>
+                            </select>
+                        </div>
+                     </div>
+                    <div class="row border-bottom">
+                        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                            <div class="col-sm-2">
+                                <br />
+                                <h3>Usuario</h3>
+                            </div>
+                        </nav>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">Correo Electrónico</label>
+                        <div class="col-sm-5"><input type="text" class="form-control"></div>
+                        <label class="col-sm-1 control-label">Contraseña</label>
+                        <div class="col-sm-5"><input type="text" class="form-control"></div>
+                    </div>
+                    <br />
+                        <div class="form-group">
+                            <div class="text-center">
+                                <a href=@Url.Action("Login","Pages")><input type="button" class="btn btn-default btn-sm" value="Cancelar" /></a>
+                                <a href=@Url.Action("Login","Pages")><input type="button" class="btn btn-primary btn-sm" value="Registrar" /></a>
+                            </div>
+                        </div>
+</form>
+            </div>
+        </div>
     </div>
+    <script src="~/Scripts/plugins/datapicker/bootstrap-datepicker.js"></script>
 </body>
 </html>
