@@ -169,9 +169,12 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AppViewsController.cs" />
+    <Compile Include="Controllers\AsignacionController.cs" />
     <Compile Include="Controllers\AsignacionesController.cs" />
     <Compile Include="Controllers\BeneficiariosController.cs" />
+    <Compile Include="Controllers\CrearCursosController.cs" />
     <Compile Include="Controllers\EvaluacionesController.cs" />
+    <Compile Include="Controllers\EventosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LandingController.cs" />
     <Compile Include="Controllers\LayoutsController.cs" />
@@ -1196,6 +1199,7 @@
     <Content Include="Images\gallery\9.jpg" />
     <Content Include="Images\gallery\9s.jpg" />
     <Content Include="Images\header.jpg" />
+    <Content Include="Images\lana.jpg" />
     <Content Include="Images\landing\avatar1.jpg" />
     <Content Include="Images\landing\avatar2.jpg" />
     <Content Include="Images\landing\avatar3.jpg" />
@@ -1763,6 +1767,9 @@
     <Content Include="Views\Layouts\VideoCursos.cshtml" />
     <Content Include="Views\Solicitudes\Cursos.cshtml" />
     <Content Include="Views\Registros\Registros.cshtml" />
+    <Content Include="Views\CrearCursos\CrearCursos.cshtml" />
+    <Content Include="Views\Eventos\Eventos.cshtml" />
+    <Content Include="Views\Asignacion\Asignacion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

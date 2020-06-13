@@ -4,15 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Inspinia_MVC5.Controllers
+namespace FUNADEH_PLATAFORMAVIRTUAL.Controllers
 {
-    public class MenuPrincipalController : Controller
+    public class AsignacionController : Controller
     {
-        // GET: MenuPrincipal
-        public ActionResult MenuPrincipal()
+        // GET: Asignacion
+        public ActionResult Asignacion()
         {
             return View();
         }
-       
     }
 }
