@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="147867e7cfca4fff838930dffdffa183" Name="Diagram1" ZoomLevel="40">
+        <EntityTypeShape EntityType="GeneracionIngresosModel.tbAccesoRol" Width="1.5" PointX="3" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeneracionIngresosModel.tbPermisos" Width="1.5" PointX="3" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeneracionIngresosModel.tbRoles" Width="1.5" PointX="3" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeneracionIngresosModel.tbRolesUsuario" Width="1.5" PointX="5.25" PointY="28.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeneracionIngresosModel.tbUsuarios" Width="1.5" PointX="0.75" PointY="27.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeneracionIngresosModel.tbDepartamentos" Width="1.5" PointX="3" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeneracionIngresosModel.tbMunicipios" Width="1.5" PointX="5.25" PointY="33" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeneracionIngresosModel.tbPrograma" Width="1.5" PointX="3" PointY="28.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeneracionIngresosModel.tbRubroEmpresa" Width="1.5" PointX="3" PointY="31.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeneracionIngresosModel.tbTipoSeguimiento" Width="1.5" PointX="3" PointY="35.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeneracionIngresosModel.tbTipoTaller" Width="1.5" PointX="5.25" PointY="37.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeneracionIngresosModel.tbBeneficiarios" Width="1.5" PointX="10.5" PointY="29.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeneracionIngresosModel.tbCapacitacion" Width="1.5" PointX="10.5" PointY="37.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeneracionIngresosModel.tbCapacitacion_Beneficiarios" Width="1.5" PointX="12.75" PointY="36.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeneracionIngresosModel.tbCapacitador" Width="1.5" PointX="3" PointY="39.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeneracionIngresosModel.tbCentroAlcance" Width="1.5" PointX="7.5" PointY="36.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeneracionIngresosModel.tbEmpleabilidad" Width="1.5" PointX="12.75" PointY="31" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeneracionIngresosModel.tbEmprendimiento" Width="1.5" PointX="15.75" PointY="30.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeneracionIngresosModel.tbEmpresa" Width="1.5" PointX="8.25" PointY="31" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeneracionIngresosModel.tbSeguimiento" Width="1.5" PointX="12.75" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeneracionIngresosModel.tbEventos" Width="1.5" PointX="3" PointY="44.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GeneracionIngresosModel.tbUsuariosLinea" Width="1.5" PointX="3" PointY="48" IsExpanded="true" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Acce_tbAccesoRol_tbUsuarios_acrol_UsuarioCrea" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Acce_tbAccesoRol_tbUsuarios_acrol_UsuarioModifica" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Acce_tbPermisos_tbUsuarios_permi_UsuarioCrea" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Acce_tbPermisos_tbUsuarios_permi_UsuarioModifica" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Acce_tbRoles_tbUsuarios_rol_UsuarioCrea" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Acce_tbRoles_tbUsuarios_rol_UsuarioModifica" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Acce_tbRolesUsuario_tbRoles_rol_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Acce_tbRolesUsuario_tbUsuarios_rolu_UsuarioCrea" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Acce_tbRolesUsuario_tbUsuarios_rolu_UsuarioModifica" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Ctl_tbDepartamentos_tbUsuarios_dep_UsuarioCrea" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Ctl_tbDepartamentos_tbUsuarios_dep_UsuarioModifica" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Ctl_tbMunicipios_tbUsuarios_mun_UsuarioCrea" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Ctl_tbMunicipios_tbUsuarios_mun_UsuarioModifica" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Ctl_tbPrograma_tbUsuarios_prog_UsuarioCrea" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Ctl_tbPrograma_tbUsuarios_prog_UsuarioModifica" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Ctl_tbRubroEmpresa_tbUsuarios_rub_UsuarioCrea" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Ctl_tbRubroEmpresa_tbUsuarios_rub_UsuarioModifica" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Ctl_tbTipoSeguimiento_tbUsuarios_tpseg_UsuarioCrea" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Ctl_tbTipoSeguimiento_tbUsuarios_tpseg_UsuarioModifica" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Ctl_tbTipoTaller_tbUsuarios_tptal_UsuarioCrea" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Ctl_tbTipoTaller_tbUsuarios_tptal_UsuarioModifica" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Gral_tbBeneficiarios_tbUsuarios_ben_UsuarioCrea" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Gral_tbBeneficiarios_tbUsuarios_ben_UsuarioModifica" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Gral_tbCapacitacion_tbUsuarios_cap_UsuarioCrea" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Gral_tbCapacitacion_tbUsuarios_cap_UsuarioModifica" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Gral_tbCapacitador_tbUsuarios_cdor_UsuarioCrea" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Gral_tbCapacitador_tbUsuarios_cdor_UsuarioModifica" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Gral_tbCentroAlcance_tbUsuarios_cda_UsuarioCrea" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Gral_tbCentroAlcance_tbUsuarios_cda_UsuarioModifica" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Gral_tbEmpleabilidad_tbUsuarios_empl_UsuarioCrea" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Gral_tbEmpleabilidad_tbUsuarios_empl_UsuarioModifica" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Gral_tbEmprendimiento_tbUsuarios_empr_UsuarioCrea" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Gral_tbEmprendimiento_tbUsuarios_empr_UsuarioModifica" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Gral_tbEmpresa_tbUsuarios_emp_UsuarioCrea" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Gral_tbEmpresa_tbUsuarios_emp_UsuarioModifica" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Gral_tbSeguimiento_tbUsuario_seg_UsuarioCrea" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Gral_tbSeguimiento_tbUsuario_seg_UsuarioModifica" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Lin_tbEventos_tbUsuarios_even_UsuarioCrea" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Lin_tbEventos_tbUsuarios_even_UsuarioModifica" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Lin_tbUsuariosLinea_tbUsuarios_usul_UsuarioCrea" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Lin_tbUsuariosLinea_tbUsuarios_usul_UsuarioModifica" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Ctl_tbMunicipios_tbDepartamentos_dep_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Gral_tbBeneficiarios_tbMunicipios_mun_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Gral_tbCentroAlcance_tbMunicipios_mun_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Ctl_tbTipoTaller_tbPrograma_prog_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Gral_tbBeneficiarios_tbPrograma_prog_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Gral_tbEmprendimiento_tbRubroEmpresa_rub_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Gral_tbEmpresa_tbRubroEmpresa_rub_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Gral_tbSeguimiento_tbTipoSeguimiento_tpseg_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_tb_Capacitacion_Beneficiarios_tb_TipoTaller_tptal_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_tbCapacitacion_tbTipo_Taller_tptal_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_tbTipoTaller_tb_Eventos_even_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Gral_tbBeneficiarios_tbCentroAlcance_cda_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Gral_tbCapacitacion_Beneficiarios_tbBeneficiarios_ben_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Gral_tbEmpleabilidad_tbBeneficiarios_ben_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Gral_tbEmprendimiento_tbBeneficiarios_ben_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Gral_tbSeguimiento_tbBeneficiarios_ben_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Gral_tbCapacitacion_Beneficiarios_tbCapacitacion_cap_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Gral_tbCapacitacion_tbCapacitador_cdor_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_tbCapacitacion_Beneficiarios_tbEventos_even_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GeneracionIngresosModel.FK_Gral_tbEmpleabilidad_tbEmpresa_emp_Id" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

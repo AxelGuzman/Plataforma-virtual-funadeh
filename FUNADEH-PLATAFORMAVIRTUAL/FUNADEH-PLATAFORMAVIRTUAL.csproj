@@ -52,6 +52,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -187,6 +189,7 @@
     <Compile Include="Controllers\SolicitudesController.cs" />
     <Compile Include="Controllers\TablesController.cs" />
     <Compile Include="Controllers\TalleresController.cs" />
+    <Compile Include="Controllers\tbMunicipiosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -194,6 +197,87 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PlataformaVirtual.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PlataformaVirtual.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PlataformaVirtual.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PlataformaVirtual.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PlataformaVirtual.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PlataformaVirtual.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbAccesoRol.cs">
+      <DependentUpon>PlataformaVirtual.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbBeneficiarios.cs">
+      <DependentUpon>PlataformaVirtual.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbCapacitacion.cs">
+      <DependentUpon>PlataformaVirtual.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbCapacitacion_Beneficiarios.cs">
+      <DependentUpon>PlataformaVirtual.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbCapacitador.cs">
+      <DependentUpon>PlataformaVirtual.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbCentroAlcance.cs">
+      <DependentUpon>PlataformaVirtual.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbDepartamentos.cs">
+      <DependentUpon>PlataformaVirtual.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbEmpleabilidad.cs">
+      <DependentUpon>PlataformaVirtual.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbEmprendimiento.cs">
+      <DependentUpon>PlataformaVirtual.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbEmpresa.cs">
+      <DependentUpon>PlataformaVirtual.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbEventos.cs">
+      <DependentUpon>PlataformaVirtual.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbMunicipios.cs">
+      <DependentUpon>PlataformaVirtual.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbPermisos.cs">
+      <DependentUpon>PlataformaVirtual.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbPrograma.cs">
+      <DependentUpon>PlataformaVirtual.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbRoles.cs">
+      <DependentUpon>PlataformaVirtual.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbRolesUsuario.cs">
+      <DependentUpon>PlataformaVirtual.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbRubroEmpresa.cs">
+      <DependentUpon>PlataformaVirtual.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbSeguimiento.cs">
+      <DependentUpon>PlataformaVirtual.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbTipoSeguimiento.cs">
+      <DependentUpon>PlataformaVirtual.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbTipoTaller.cs">
+      <DependentUpon>PlataformaVirtual.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbUsuarios.cs">
+      <DependentUpon>PlataformaVirtual.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbUsuariosLinea.cs">
+      <DependentUpon>PlataformaVirtual.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -1229,6 +1313,16 @@
     <Content Include="Images\p_big2.jpg" />
     <Content Include="Images\p_big3.jpg" />
     <Content Include="Images\zender_logo.png" />
+    <Content Include="Models\PlataformaVirtual.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PlataformaVirtual.edmx</DependentUpon>
+      <LastGenOutput>PlataformaVirtual.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\PlataformaVirtual.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PlataformaVirtual.edmx</DependentUpon>
+      <LastGenOutput>PlataformaVirtual.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\app\inspinia.js" />
     <Content Include="Scripts\app\skin.config.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1236,6 +1330,13 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <EntityDeploy Include="Models\PlataformaVirtual.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PlataformaVirtual.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\PlataformaVirtual.edmx.diagram">
+      <DependentUpon>PlataformaVirtual.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
@@ -1770,9 +1871,13 @@
     <Content Include="Views\CrearCursos\CrearCursos.cshtml" />
     <Content Include="Views\Eventos\Eventos.cshtml" />
     <Content Include="Views\Asignacion\Asignacion.cshtml" />
+    <Content Include="Views\tbMunicipios\Create.cshtml" />
+    <Content Include="Views\tbMunicipios\Delete.cshtml" />
+    <Content Include="Views\tbMunicipios\Details.cshtml" />
+    <Content Include="Views\tbMunicipios\Edit.cshtml" />
+    <Content Include="Views\tbMunicipios\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Views\CSSAnimations\" />
     <Folder Include="Views\UIElements\" />
     <Folder Include="Views\Widgets\" />
@@ -1790,6 +1895,9 @@
     <Content Include="Scripts\plugins\diff_match_patch\COPYING" />
     <Content Include="Scripts\plugins\justified-gallery\README.md" />
     <Content Include="Scripts\plugins\topojson\LICENSE" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
