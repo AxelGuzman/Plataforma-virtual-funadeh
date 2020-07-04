@@ -22,6 +22,8 @@ namespace FUNADEH_PLATAFORMAVIRTUAL.Models
         public byte[] usul_Password { get; set; }
         public bool usul_Estado { get; set; }
         public string usul_Status { get; set; }
+        public Nullable<int> even_Id { get; set; }
+        public Nullable<int> cert_Id { get; set; }
         public int usul_UsuarioCrea { get; set; }
         public System.DateTime usul_FechaCrea { get; set; }
         public Nullable<int> usul_UsuarioModifica { get; set; }

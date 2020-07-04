@@ -12,25 +12,27 @@ namespace FUNADEH_PLATAFORMAVIRTUAL.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbEventos
+    public partial class tbPreguntas
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbEventos()
+        public tbPreguntas()
         {
-            this.tbCapacitacion_Beneficiarios = new HashSet<tbCapacitacion_Beneficiarios>();
+            this.tbRespuestas = new HashSet<tbRespuestas>();
         }
     
-        public int even_Id { get; set; }
-        public string even_Descripcion { get; set; }
-        public bool even_Estado { get; set; }
-        public int even_UsuarioCrea { get; set; }
-        public System.DateTime even_FechaCrea { get; set; }
-        public Nullable<int> even_UsuarioModifica { get; set; }
-        public Nullable<System.DateTime> even_FechaModifica { get; set; }
+        public int preg_Id { get; set; }
+        public string preg_Descripcion { get; set; }
+        public int evac_Id { get; set; }
+        public bool preg_Estado { get; set; }
+        public int preg_UsuarioCrea { get; set; }
+        public System.DateTime preg_FechaCrea { get; set; }
+        public Nullable<int> preg_UsuarioModifica { get; set; }
+        public Nullable<System.DateTime> preg_FechaModifica { get; set; }
     
         public virtual tbUsuarios tbUsuarios { get; set; }
         public virtual tbUsuarios tbUsuarios1 { get; set; }
+        public virtual tbEvaluaciones tbEvaluaciones { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbCapacitacion_Beneficiarios> tbCapacitacion_Beneficiarios { get; set; }
+        public virtual ICollection<tbRespuestas> tbRespuestas { get; set; }
     }
 }

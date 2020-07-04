@@ -55,6 +55,10 @@ namespace FUNADEH_PLATAFORMAVIRTUAL.Models
             this.tbSeguimiento1 = new HashSet<tbSeguimiento>();
             this.tbEventos = new HashSet<tbEventos>();
             this.tbEventos1 = new HashSet<tbEventos>();
+            this.tbPreguntas = new HashSet<tbPreguntas>();
+            this.tbPreguntas1 = new HashSet<tbPreguntas>();
+            this.tbRespuestas = new HashSet<tbRespuestas>();
+            this.tbRespuestas1 = new HashSet<tbRespuestas>();
             this.tbUsuariosLinea = new HashSet<tbUsuariosLinea>();
             this.tbUsuariosLinea1 = new HashSet<tbUsuariosLinea>();
         }
@@ -150,6 +154,14 @@ namespace FUNADEH_PLATAFORMAVIRTUAL.Models
         public virtual ICollection<tbEventos> tbEventos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbEventos> tbEventos1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbPreguntas> tbPreguntas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbPreguntas> tbPreguntas1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbRespuestas> tbRespuestas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbRespuestas> tbRespuestas1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbUsuariosLinea> tbUsuariosLinea { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -31,6 +31,7 @@ namespace FUNADEH_PLATAFORMAVIRTUAL.Models
         public Nullable<int> even_Id { get; set; }
         public Nullable<int> evac_Id { get; set; }
         public bool tptal_Es_Activo { get; set; }
+        public Nullable<bool> tptal_EstadoEnLinea { get; set; }
         public int tptal_UsuarioCrea { get; set; }
         public System.DateTime tptal_FechaCrea { get; set; }
         public Nullable<int> tptal_UsuarioModifica { get; set; }
@@ -43,6 +44,5 @@ namespace FUNADEH_PLATAFORMAVIRTUAL.Models
         public virtual ICollection<tbCapacitacion_Beneficiarios> tbCapacitacion_Beneficiarios { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbCapacitacion> tbCapacitacion { get; set; }
-        public virtual tbEventos tbEventos { get; set; }
     }
 }

@@ -12,6 +12,8 @@ namespace FUNADEH_PLATAFORMAVIRTUAL.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class GeneracionIngresosEntities : DbContext
     {
@@ -25,6 +27,7 @@ namespace FUNADEH_PLATAFORMAVIRTUAL.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<tbEmprendimiento> tbEmprendimiento { get; set; }
         public virtual DbSet<tbAccesoRol> tbAccesoRol { get; set; }
         public virtual DbSet<tbPermisos> tbPermisos { get; set; }
         public virtual DbSet<tbRoles> tbRoles { get; set; }
@@ -42,10 +45,1710 @@ namespace FUNADEH_PLATAFORMAVIRTUAL.Models
         public virtual DbSet<tbCapacitador> tbCapacitador { get; set; }
         public virtual DbSet<tbCentroAlcance> tbCentroAlcance { get; set; }
         public virtual DbSet<tbEmpleabilidad> tbEmpleabilidad { get; set; }
-        public virtual DbSet<tbEmprendimiento> tbEmprendimiento { get; set; }
         public virtual DbSet<tbEmpresa> tbEmpresa { get; set; }
         public virtual DbSet<tbSeguimiento> tbSeguimiento { get; set; }
+        public virtual DbSet<tbEvaluaciones> tbEvaluaciones { get; set; }
         public virtual DbSet<tbEventos> tbEventos { get; set; }
+        public virtual DbSet<tbPreguntas> tbPreguntas { get; set; }
+        public virtual DbSet<tbRespuestas> tbRespuestas { get; set; }
         public virtual DbSet<tbUsuariosLinea> tbUsuariosLinea { get; set; }
+    
+        public virtual ObjectResult<UDP_Acce_Login_Result> UDP_Acce_Login(string usu_NombreUsuario, string usu_Password)
+        {
+            var usu_NombreUsuarioParameter = usu_NombreUsuario != null ?
+                new ObjectParameter("usu_NombreUsuario", usu_NombreUsuario) :
+                new ObjectParameter("usu_NombreUsuario", typeof(string));
+    
+            var usu_PasswordParameter = usu_Password != null ?
+                new ObjectParameter("usu_Password", usu_Password) :
+                new ObjectParameter("usu_Password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_Login_Result>("UDP_Acce_Login", usu_NombreUsuarioParameter, usu_PasswordParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Acce_tbPermisos_Insert(string permi_Pantalla, string permi_Referencia, Nullable<bool> permi_Estado, Nullable<int> permi_UsuarioCrea, Nullable<System.DateTime> permi_FechaCrea)
+        {
+            var permi_PantallaParameter = permi_Pantalla != null ?
+                new ObjectParameter("permi_Pantalla", permi_Pantalla) :
+                new ObjectParameter("permi_Pantalla", typeof(string));
+    
+            var permi_ReferenciaParameter = permi_Referencia != null ?
+                new ObjectParameter("permi_Referencia", permi_Referencia) :
+                new ObjectParameter("permi_Referencia", typeof(string));
+    
+            var permi_EstadoParameter = permi_Estado.HasValue ?
+                new ObjectParameter("permi_Estado", permi_Estado) :
+                new ObjectParameter("permi_Estado", typeof(bool));
+    
+            var permi_UsuarioCreaParameter = permi_UsuarioCrea.HasValue ?
+                new ObjectParameter("permi_UsuarioCrea", permi_UsuarioCrea) :
+                new ObjectParameter("permi_UsuarioCrea", typeof(int));
+    
+            var permi_FechaCreaParameter = permi_FechaCrea.HasValue ?
+                new ObjectParameter("permi_FechaCrea", permi_FechaCrea) :
+                new ObjectParameter("permi_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Acce_tbPermisos_Insert", permi_PantallaParameter, permi_ReferenciaParameter, permi_EstadoParameter, permi_UsuarioCreaParameter, permi_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Acce_tbRoles_Insert(string rol_Descripcion, Nullable<int> rol_UsuarioCrea, Nullable<System.DateTime> rol_FechaCrea)
+        {
+            var rol_DescripcionParameter = rol_Descripcion != null ?
+                new ObjectParameter("rol_Descripcion", rol_Descripcion) :
+                new ObjectParameter("rol_Descripcion", typeof(string));
+    
+            var rol_UsuarioCreaParameter = rol_UsuarioCrea.HasValue ?
+                new ObjectParameter("rol_UsuarioCrea", rol_UsuarioCrea) :
+                new ObjectParameter("rol_UsuarioCrea", typeof(int));
+    
+            var rol_FechaCreaParameter = rol_FechaCrea.HasValue ?
+                new ObjectParameter("rol_FechaCrea", rol_FechaCrea) :
+                new ObjectParameter("rol_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Acce_tbRoles_Insert", rol_DescripcionParameter, rol_UsuarioCreaParameter, rol_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Acce_tbUsuarios_Estado(Nullable<int> usu_Id, Nullable<bool> usu_EsActivo, string usu_RazonInactivo)
+        {
+            var usu_IdParameter = usu_Id.HasValue ?
+                new ObjectParameter("usu_Id", usu_Id) :
+                new ObjectParameter("usu_Id", typeof(int));
+    
+            var usu_EsActivoParameter = usu_EsActivo.HasValue ?
+                new ObjectParameter("usu_EsActivo", usu_EsActivo) :
+                new ObjectParameter("usu_EsActivo", typeof(bool));
+    
+            var usu_RazonInactivoParameter = usu_RazonInactivo != null ?
+                new ObjectParameter("usu_RazonInactivo", usu_RazonInactivo) :
+                new ObjectParameter("usu_RazonInactivo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Acce_tbUsuarios_Estado", usu_IdParameter, usu_EsActivoParameter, usu_RazonInactivoParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Acce_tbUsuarios_Insert(string usu_NombreUsuario, string usu_Password, string usu_FotoPerfil, string usu_Nombres, string usu_Apellidos, string usu_Direccion, string usu_Telefono, string usu_Sexo, string usu_CorreoElectronico, Nullable<bool> usu_EsAdministrador)
+        {
+            var usu_NombreUsuarioParameter = usu_NombreUsuario != null ?
+                new ObjectParameter("usu_NombreUsuario", usu_NombreUsuario) :
+                new ObjectParameter("usu_NombreUsuario", typeof(string));
+    
+            var usu_PasswordParameter = usu_Password != null ?
+                new ObjectParameter("usu_Password", usu_Password) :
+                new ObjectParameter("usu_Password", typeof(string));
+    
+            var usu_FotoPerfilParameter = usu_FotoPerfil != null ?
+                new ObjectParameter("usu_FotoPerfil", usu_FotoPerfil) :
+                new ObjectParameter("usu_FotoPerfil", typeof(string));
+    
+            var usu_NombresParameter = usu_Nombres != null ?
+                new ObjectParameter("usu_Nombres", usu_Nombres) :
+                new ObjectParameter("usu_Nombres", typeof(string));
+    
+            var usu_ApellidosParameter = usu_Apellidos != null ?
+                new ObjectParameter("usu_Apellidos", usu_Apellidos) :
+                new ObjectParameter("usu_Apellidos", typeof(string));
+    
+            var usu_DireccionParameter = usu_Direccion != null ?
+                new ObjectParameter("usu_Direccion", usu_Direccion) :
+                new ObjectParameter("usu_Direccion", typeof(string));
+    
+            var usu_TelefonoParameter = usu_Telefono != null ?
+                new ObjectParameter("usu_Telefono", usu_Telefono) :
+                new ObjectParameter("usu_Telefono", typeof(string));
+    
+            var usu_SexoParameter = usu_Sexo != null ?
+                new ObjectParameter("usu_Sexo", usu_Sexo) :
+                new ObjectParameter("usu_Sexo", typeof(string));
+    
+            var usu_CorreoElectronicoParameter = usu_CorreoElectronico != null ?
+                new ObjectParameter("usu_CorreoElectronico", usu_CorreoElectronico) :
+                new ObjectParameter("usu_CorreoElectronico", typeof(string));
+    
+            var usu_EsAdministradorParameter = usu_EsAdministrador.HasValue ?
+                new ObjectParameter("usu_EsAdministrador", usu_EsAdministrador) :
+                new ObjectParameter("usu_EsAdministrador", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Acce_tbUsuarios_Insert", usu_NombreUsuarioParameter, usu_PasswordParameter, usu_FotoPerfilParameter, usu_NombresParameter, usu_ApellidosParameter, usu_DireccionParameter, usu_TelefonoParameter, usu_SexoParameter, usu_CorreoElectronicoParameter, usu_EsAdministradorParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Acce_tbUsuarios_ModificarPassword(Nullable<int> usu_Id, string usu_Password)
+        {
+            var usu_IdParameter = usu_Id.HasValue ?
+                new ObjectParameter("usu_Id", usu_Id) :
+                new ObjectParameter("usu_Id", typeof(int));
+    
+            var usu_PasswordParameter = usu_Password != null ?
+                new ObjectParameter("usu_Password", usu_Password) :
+                new ObjectParameter("usu_Password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Acce_tbUsuarios_ModificarPassword", usu_IdParameter, usu_PasswordParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Acce_tbUsuarios_RestaurarPass(Nullable<int> usu_Id, string usu_Password)
+        {
+            var usu_IdParameter = usu_Id.HasValue ?
+                new ObjectParameter("usu_Id", usu_Id) :
+                new ObjectParameter("usu_Id", typeof(int));
+    
+            var usu_PasswordParameter = usu_Password != null ?
+                new ObjectParameter("usu_Password", usu_Password) :
+                new ObjectParameter("usu_Password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Acce_tbUsuarios_RestaurarPass", usu_IdParameter, usu_PasswordParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Acce_tbUsuarios_Update(Nullable<int> usu_Id, string usu_NombreUsuario, string usu_FotoPerfil, string usu_Nombres, string usu_Apellidos, string usu_Direccion, string usu_Telefono, string usu_Sexo, string usu_CorreoElectronico, string usu_RazonInactivo, Nullable<bool> usu_EsAdministrador)
+        {
+            var usu_IdParameter = usu_Id.HasValue ?
+                new ObjectParameter("usu_Id", usu_Id) :
+                new ObjectParameter("usu_Id", typeof(int));
+    
+            var usu_NombreUsuarioParameter = usu_NombreUsuario != null ?
+                new ObjectParameter("usu_NombreUsuario", usu_NombreUsuario) :
+                new ObjectParameter("usu_NombreUsuario", typeof(string));
+    
+            var usu_FotoPerfilParameter = usu_FotoPerfil != null ?
+                new ObjectParameter("usu_FotoPerfil", usu_FotoPerfil) :
+                new ObjectParameter("usu_FotoPerfil", typeof(string));
+    
+            var usu_NombresParameter = usu_Nombres != null ?
+                new ObjectParameter("usu_Nombres", usu_Nombres) :
+                new ObjectParameter("usu_Nombres", typeof(string));
+    
+            var usu_ApellidosParameter = usu_Apellidos != null ?
+                new ObjectParameter("usu_Apellidos", usu_Apellidos) :
+                new ObjectParameter("usu_Apellidos", typeof(string));
+    
+            var usu_DireccionParameter = usu_Direccion != null ?
+                new ObjectParameter("usu_Direccion", usu_Direccion) :
+                new ObjectParameter("usu_Direccion", typeof(string));
+    
+            var usu_TelefonoParameter = usu_Telefono != null ?
+                new ObjectParameter("usu_Telefono", usu_Telefono) :
+                new ObjectParameter("usu_Telefono", typeof(string));
+    
+            var usu_SexoParameter = usu_Sexo != null ?
+                new ObjectParameter("usu_Sexo", usu_Sexo) :
+                new ObjectParameter("usu_Sexo", typeof(string));
+    
+            var usu_CorreoElectronicoParameter = usu_CorreoElectronico != null ?
+                new ObjectParameter("usu_CorreoElectronico", usu_CorreoElectronico) :
+                new ObjectParameter("usu_CorreoElectronico", typeof(string));
+    
+            var usu_RazonInactivoParameter = usu_RazonInactivo != null ?
+                new ObjectParameter("usu_RazonInactivo", usu_RazonInactivo) :
+                new ObjectParameter("usu_RazonInactivo", typeof(string));
+    
+            var usu_EsAdministradorParameter = usu_EsAdministrador.HasValue ?
+                new ObjectParameter("usu_EsAdministrador", usu_EsAdministrador) :
+                new ObjectParameter("usu_EsAdministrador", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Acce_tbUsuarios_Update", usu_IdParameter, usu_NombreUsuarioParameter, usu_FotoPerfilParameter, usu_NombresParameter, usu_ApellidosParameter, usu_DireccionParameter, usu_TelefonoParameter, usu_SexoParameter, usu_CorreoElectronicoParameter, usu_RazonInactivoParameter, usu_EsAdministradorParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Ctl_tbDepartamentos_Insert(string dep_Id, string dep_Descripcion, Nullable<int> dep_UsuarioCrea, Nullable<System.DateTime> dep_FechaCrea)
+        {
+            var dep_IdParameter = dep_Id != null ?
+                new ObjectParameter("dep_Id", dep_Id) :
+                new ObjectParameter("dep_Id", typeof(string));
+    
+            var dep_DescripcionParameter = dep_Descripcion != null ?
+                new ObjectParameter("dep_Descripcion", dep_Descripcion) :
+                new ObjectParameter("dep_Descripcion", typeof(string));
+    
+            var dep_UsuarioCreaParameter = dep_UsuarioCrea.HasValue ?
+                new ObjectParameter("dep_UsuarioCrea", dep_UsuarioCrea) :
+                new ObjectParameter("dep_UsuarioCrea", typeof(int));
+    
+            var dep_FechaCreaParameter = dep_FechaCrea.HasValue ?
+                new ObjectParameter("dep_FechaCrea", dep_FechaCrea) :
+                new ObjectParameter("dep_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Ctl_tbDepartamentos_Insert", dep_IdParameter, dep_DescripcionParameter, dep_UsuarioCreaParameter, dep_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Ctl_tbMunicipios_Insert(string mun_Id, string mun_Descripcion, string dep_Id, Nullable<int> mun_UsuarioCrea, Nullable<System.DateTime> mun_FechaCrea)
+        {
+            var mun_IdParameter = mun_Id != null ?
+                new ObjectParameter("mun_Id", mun_Id) :
+                new ObjectParameter("mun_Id", typeof(string));
+    
+            var mun_DescripcionParameter = mun_Descripcion != null ?
+                new ObjectParameter("mun_Descripcion", mun_Descripcion) :
+                new ObjectParameter("mun_Descripcion", typeof(string));
+    
+            var dep_IdParameter = dep_Id != null ?
+                new ObjectParameter("dep_Id", dep_Id) :
+                new ObjectParameter("dep_Id", typeof(string));
+    
+            var mun_UsuarioCreaParameter = mun_UsuarioCrea.HasValue ?
+                new ObjectParameter("mun_UsuarioCrea", mun_UsuarioCrea) :
+                new ObjectParameter("mun_UsuarioCrea", typeof(int));
+    
+            var mun_FechaCreaParameter = mun_FechaCrea.HasValue ?
+                new ObjectParameter("mun_FechaCrea", mun_FechaCrea) :
+                new ObjectParameter("mun_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Ctl_tbMunicipios_Insert", mun_IdParameter, mun_DescripcionParameter, dep_IdParameter, mun_UsuarioCreaParameter, mun_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Ctl_tbPrograma_Insert(string prog_Descripcion, Nullable<int> prog_UsuarioCrea, Nullable<System.DateTime> prog_FechaCrea)
+        {
+            var prog_DescripcionParameter = prog_Descripcion != null ?
+                new ObjectParameter("prog_Descripcion", prog_Descripcion) :
+                new ObjectParameter("prog_Descripcion", typeof(string));
+    
+            var prog_UsuarioCreaParameter = prog_UsuarioCrea.HasValue ?
+                new ObjectParameter("prog_UsuarioCrea", prog_UsuarioCrea) :
+                new ObjectParameter("prog_UsuarioCrea", typeof(int));
+    
+            var prog_FechaCreaParameter = prog_FechaCrea.HasValue ?
+                new ObjectParameter("prog_FechaCrea", prog_FechaCrea) :
+                new ObjectParameter("prog_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Ctl_tbPrograma_Insert", prog_DescripcionParameter, prog_UsuarioCreaParameter, prog_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Ctl_tbRubroEmpresa_Insert(string rub_Descripcion, Nullable<int> rub_UsuarioCrea, Nullable<System.DateTime> rub_FechaCrea)
+        {
+            var rub_DescripcionParameter = rub_Descripcion != null ?
+                new ObjectParameter("rub_Descripcion", rub_Descripcion) :
+                new ObjectParameter("rub_Descripcion", typeof(string));
+    
+            var rub_UsuarioCreaParameter = rub_UsuarioCrea.HasValue ?
+                new ObjectParameter("rub_UsuarioCrea", rub_UsuarioCrea) :
+                new ObjectParameter("rub_UsuarioCrea", typeof(int));
+    
+            var rub_FechaCreaParameter = rub_FechaCrea.HasValue ?
+                new ObjectParameter("rub_FechaCrea", rub_FechaCrea) :
+                new ObjectParameter("rub_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Ctl_tbRubroEmpresa_Insert", rub_DescripcionParameter, rub_UsuarioCreaParameter, rub_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Ctl_tbTipoSeguimiento_Insert(string tpseg_Descripcion, Nullable<int> tpseg_UsuarioCrea, Nullable<System.DateTime> tpseg_FechaCrea)
+        {
+            var tpseg_DescripcionParameter = tpseg_Descripcion != null ?
+                new ObjectParameter("tpseg_Descripcion", tpseg_Descripcion) :
+                new ObjectParameter("tpseg_Descripcion", typeof(string));
+    
+            var tpseg_UsuarioCreaParameter = tpseg_UsuarioCrea.HasValue ?
+                new ObjectParameter("tpseg_UsuarioCrea", tpseg_UsuarioCrea) :
+                new ObjectParameter("tpseg_UsuarioCrea", typeof(int));
+    
+            var tpseg_FechaCreaParameter = tpseg_FechaCrea.HasValue ?
+                new ObjectParameter("tpseg_FechaCrea", tpseg_FechaCrea) :
+                new ObjectParameter("tpseg_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Ctl_tbTipoSeguimiento_Insert", tpseg_DescripcionParameter, tpseg_UsuarioCreaParameter, tpseg_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Ctl_tbTipoSeguimiento_Update(Nullable<int> tpseg_Id, string tpseg_Descripcion, Nullable<int> tpseg_UsuarioCrea, Nullable<System.DateTime> tpseg_FechaCrea, Nullable<int> tpseg_UsuarioModifica, Nullable<System.DateTime> tpseg_FechaModifica)
+        {
+            var tpseg_IdParameter = tpseg_Id.HasValue ?
+                new ObjectParameter("tpseg_Id", tpseg_Id) :
+                new ObjectParameter("tpseg_Id", typeof(int));
+    
+            var tpseg_DescripcionParameter = tpseg_Descripcion != null ?
+                new ObjectParameter("tpseg_Descripcion", tpseg_Descripcion) :
+                new ObjectParameter("tpseg_Descripcion", typeof(string));
+    
+            var tpseg_UsuarioCreaParameter = tpseg_UsuarioCrea.HasValue ?
+                new ObjectParameter("tpseg_UsuarioCrea", tpseg_UsuarioCrea) :
+                new ObjectParameter("tpseg_UsuarioCrea", typeof(int));
+    
+            var tpseg_FechaCreaParameter = tpseg_FechaCrea.HasValue ?
+                new ObjectParameter("tpseg_FechaCrea", tpseg_FechaCrea) :
+                new ObjectParameter("tpseg_FechaCrea", typeof(System.DateTime));
+    
+            var tpseg_UsuarioModificaParameter = tpseg_UsuarioModifica.HasValue ?
+                new ObjectParameter("tpseg_UsuarioModifica", tpseg_UsuarioModifica) :
+                new ObjectParameter("tpseg_UsuarioModifica", typeof(int));
+    
+            var tpseg_FechaModificaParameter = tpseg_FechaModifica.HasValue ?
+                new ObjectParameter("tpseg_FechaModifica", tpseg_FechaModifica) :
+                new ObjectParameter("tpseg_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Ctl_tbTipoSeguimiento_Update", tpseg_IdParameter, tpseg_DescripcionParameter, tpseg_UsuarioCreaParameter, tpseg_FechaCreaParameter, tpseg_UsuarioModificaParameter, tpseg_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Ctl_tbTipoTaller_Estado(Nullable<int> tptal_Id, Nullable<bool> tptal_Es_Activo)
+        {
+            var tptal_IdParameter = tptal_Id.HasValue ?
+                new ObjectParameter("tptal_Id", tptal_Id) :
+                new ObjectParameter("tptal_Id", typeof(int));
+    
+            var tptal_Es_ActivoParameter = tptal_Es_Activo.HasValue ?
+                new ObjectParameter("tptal_Es_Activo", tptal_Es_Activo) :
+                new ObjectParameter("tptal_Es_Activo", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Ctl_tbTipoTaller_Estado", tptal_IdParameter, tptal_Es_ActivoParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Ctl_tbTipoTaller_Insert(string tptal_Descripcion, Nullable<int> prog_Id, Nullable<bool> tptal_Es_Activo, Nullable<int> tptal_UsuarioCrea, Nullable<System.DateTime> tptal_FechaCrea)
+        {
+            var tptal_DescripcionParameter = tptal_Descripcion != null ?
+                new ObjectParameter("tptal_Descripcion", tptal_Descripcion) :
+                new ObjectParameter("tptal_Descripcion", typeof(string));
+    
+            var prog_IdParameter = prog_Id.HasValue ?
+                new ObjectParameter("prog_Id", prog_Id) :
+                new ObjectParameter("prog_Id", typeof(int));
+    
+            var tptal_Es_ActivoParameter = tptal_Es_Activo.HasValue ?
+                new ObjectParameter("tptal_Es_Activo", tptal_Es_Activo) :
+                new ObjectParameter("tptal_Es_Activo", typeof(bool));
+    
+            var tptal_UsuarioCreaParameter = tptal_UsuarioCrea.HasValue ?
+                new ObjectParameter("tptal_UsuarioCrea", tptal_UsuarioCrea) :
+                new ObjectParameter("tptal_UsuarioCrea", typeof(int));
+    
+            var tptal_FechaCreaParameter = tptal_FechaCrea.HasValue ?
+                new ObjectParameter("tptal_FechaCrea", tptal_FechaCrea) :
+                new ObjectParameter("tptal_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Ctl_tbTipoTaller_Insert", tptal_DescripcionParameter, prog_IdParameter, tptal_Es_ActivoParameter, tptal_UsuarioCreaParameter, tptal_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Ctl_tbTipoTaller_Update(Nullable<int> tptal_Id, string tptal_Descripcion, Nullable<int> prog_Id, Nullable<int> tptal_UsuarioCrea, Nullable<System.DateTime> tptal_FechaCrea, Nullable<int> tptal_UsuarioModifica, Nullable<System.DateTime> tptal_FechaModifica)
+        {
+            var tptal_IdParameter = tptal_Id.HasValue ?
+                new ObjectParameter("tptal_Id", tptal_Id) :
+                new ObjectParameter("tptal_Id", typeof(int));
+    
+            var tptal_DescripcionParameter = tptal_Descripcion != null ?
+                new ObjectParameter("tptal_Descripcion", tptal_Descripcion) :
+                new ObjectParameter("tptal_Descripcion", typeof(string));
+    
+            var prog_IdParameter = prog_Id.HasValue ?
+                new ObjectParameter("prog_Id", prog_Id) :
+                new ObjectParameter("prog_Id", typeof(int));
+    
+            var tptal_UsuarioCreaParameter = tptal_UsuarioCrea.HasValue ?
+                new ObjectParameter("tptal_UsuarioCrea", tptal_UsuarioCrea) :
+                new ObjectParameter("tptal_UsuarioCrea", typeof(int));
+    
+            var tptal_FechaCreaParameter = tptal_FechaCrea.HasValue ?
+                new ObjectParameter("tptal_FechaCrea", tptal_FechaCrea) :
+                new ObjectParameter("tptal_FechaCrea", typeof(System.DateTime));
+    
+            var tptal_UsuarioModificaParameter = tptal_UsuarioModifica.HasValue ?
+                new ObjectParameter("tptal_UsuarioModifica", tptal_UsuarioModifica) :
+                new ObjectParameter("tptal_UsuarioModifica", typeof(int));
+    
+            var tptal_FechaModificaParameter = tptal_FechaModifica.HasValue ?
+                new ObjectParameter("tptal_FechaModifica", tptal_FechaModifica) :
+                new ObjectParameter("tptal_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Ctl_tbTipoTaller_Update", tptal_IdParameter, tptal_DescripcionParameter, prog_IdParameter, tptal_UsuarioCreaParameter, tptal_FechaCreaParameter, tptal_UsuarioModificaParameter, tptal_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Gral_BusquedaBeneficiario_Result> UDP_Gral_BusquedaBeneficiario(string nombre, Nullable<System.DateTime> desde, Nullable<System.DateTime> hasta)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var desdeParameter = desde.HasValue ?
+                new ObjectParameter("Desde", desde) :
+                new ObjectParameter("Desde", typeof(System.DateTime));
+    
+            var hastaParameter = hasta.HasValue ?
+                new ObjectParameter("Hasta", hasta) :
+                new ObjectParameter("Hasta", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_BusquedaBeneficiario_Result>("UDP_Gral_BusquedaBeneficiario", nombreParameter, desdeParameter, hastaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Gral_DiplomaCapacitacion_Result> UDP_Gral_DiplomaCapacitacion(Nullable<int> cap_Id)
+        {
+            var cap_IdParameter = cap_Id.HasValue ?
+                new ObjectParameter("cap_Id", cap_Id) :
+                new ObjectParameter("cap_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_DiplomaCapacitacion_Result>("UDP_Gral_DiplomaCapacitacion", cap_IdParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Gral_tbBeneficiarios_Insert(string ben_Identificacion, string ben_Nombres, string ben_Apellidos, string ben_Telefono, string ben_CorreoElectronico, string mun_Id, string ben_Direccion, string ben_Sexo, Nullable<System.DateTime> ben_FechaNacimiento, string ben_NivelAcademico, Nullable<bool> ben_Amigrado, Nullable<bool> ben_TieneIntenciones, Nullable<bool> ben_ExMiembroPandilla, Nullable<bool> ben_EsVoluntario, Nullable<int> cda_Id, string ben_TipoBeneficiario, Nullable<int> prog_Id, Nullable<int> ben_UsuarioCrea, Nullable<System.DateTime> ben_FechaCrea)
+        {
+            var ben_IdentificacionParameter = ben_Identificacion != null ?
+                new ObjectParameter("ben_Identificacion", ben_Identificacion) :
+                new ObjectParameter("ben_Identificacion", typeof(string));
+    
+            var ben_NombresParameter = ben_Nombres != null ?
+                new ObjectParameter("ben_Nombres", ben_Nombres) :
+                new ObjectParameter("ben_Nombres", typeof(string));
+    
+            var ben_ApellidosParameter = ben_Apellidos != null ?
+                new ObjectParameter("ben_Apellidos", ben_Apellidos) :
+                new ObjectParameter("ben_Apellidos", typeof(string));
+    
+            var ben_TelefonoParameter = ben_Telefono != null ?
+                new ObjectParameter("ben_Telefono", ben_Telefono) :
+                new ObjectParameter("ben_Telefono", typeof(string));
+    
+            var ben_CorreoElectronicoParameter = ben_CorreoElectronico != null ?
+                new ObjectParameter("ben_CorreoElectronico", ben_CorreoElectronico) :
+                new ObjectParameter("ben_CorreoElectronico", typeof(string));
+    
+            var mun_IdParameter = mun_Id != null ?
+                new ObjectParameter("mun_Id", mun_Id) :
+                new ObjectParameter("mun_Id", typeof(string));
+    
+            var ben_DireccionParameter = ben_Direccion != null ?
+                new ObjectParameter("ben_Direccion", ben_Direccion) :
+                new ObjectParameter("ben_Direccion", typeof(string));
+    
+            var ben_SexoParameter = ben_Sexo != null ?
+                new ObjectParameter("ben_Sexo", ben_Sexo) :
+                new ObjectParameter("ben_Sexo", typeof(string));
+    
+            var ben_FechaNacimientoParameter = ben_FechaNacimiento.HasValue ?
+                new ObjectParameter("ben_FechaNacimiento", ben_FechaNacimiento) :
+                new ObjectParameter("ben_FechaNacimiento", typeof(System.DateTime));
+    
+            var ben_NivelAcademicoParameter = ben_NivelAcademico != null ?
+                new ObjectParameter("ben_NivelAcademico", ben_NivelAcademico) :
+                new ObjectParameter("ben_NivelAcademico", typeof(string));
+    
+            var ben_AmigradoParameter = ben_Amigrado.HasValue ?
+                new ObjectParameter("ben_Amigrado", ben_Amigrado) :
+                new ObjectParameter("ben_Amigrado", typeof(bool));
+    
+            var ben_TieneIntencionesParameter = ben_TieneIntenciones.HasValue ?
+                new ObjectParameter("ben_TieneIntenciones", ben_TieneIntenciones) :
+                new ObjectParameter("ben_TieneIntenciones", typeof(bool));
+    
+            var ben_ExMiembroPandillaParameter = ben_ExMiembroPandilla.HasValue ?
+                new ObjectParameter("ben_ExMiembroPandilla", ben_ExMiembroPandilla) :
+                new ObjectParameter("ben_ExMiembroPandilla", typeof(bool));
+    
+            var ben_EsVoluntarioParameter = ben_EsVoluntario.HasValue ?
+                new ObjectParameter("ben_EsVoluntario", ben_EsVoluntario) :
+                new ObjectParameter("ben_EsVoluntario", typeof(bool));
+    
+            var cda_IdParameter = cda_Id.HasValue ?
+                new ObjectParameter("cda_Id", cda_Id) :
+                new ObjectParameter("cda_Id", typeof(int));
+    
+            var ben_TipoBeneficiarioParameter = ben_TipoBeneficiario != null ?
+                new ObjectParameter("ben_TipoBeneficiario", ben_TipoBeneficiario) :
+                new ObjectParameter("ben_TipoBeneficiario", typeof(string));
+    
+            var prog_IdParameter = prog_Id.HasValue ?
+                new ObjectParameter("prog_Id", prog_Id) :
+                new ObjectParameter("prog_Id", typeof(int));
+    
+            var ben_UsuarioCreaParameter = ben_UsuarioCrea.HasValue ?
+                new ObjectParameter("ben_UsuarioCrea", ben_UsuarioCrea) :
+                new ObjectParameter("ben_UsuarioCrea", typeof(int));
+    
+            var ben_FechaCreaParameter = ben_FechaCrea.HasValue ?
+                new ObjectParameter("ben_FechaCrea", ben_FechaCrea) :
+                new ObjectParameter("ben_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Gral_tbBeneficiarios_Insert", ben_IdentificacionParameter, ben_NombresParameter, ben_ApellidosParameter, ben_TelefonoParameter, ben_CorreoElectronicoParameter, mun_IdParameter, ben_DireccionParameter, ben_SexoParameter, ben_FechaNacimientoParameter, ben_NivelAcademicoParameter, ben_AmigradoParameter, ben_TieneIntencionesParameter, ben_ExMiembroPandillaParameter, ben_EsVoluntarioParameter, cda_IdParameter, ben_TipoBeneficiarioParameter, prog_IdParameter, ben_UsuarioCreaParameter, ben_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Gral_tbBeneficiarios_Update(Nullable<int> ben_Id, string ben_Identificacion, string ben_Nombres, string ben_Apellidos, string ben_Telefono, string ben_CorreoElectronico, string mun_Id, string ben_Direccion, string ben_Sexo, Nullable<System.DateTime> ben_FechaNacimiento, string ben_NivelAcademico, Nullable<bool> ben_Amigrado, Nullable<bool> ben_TieneIntenciones, Nullable<bool> ben_ExMiembroPandilla, Nullable<bool> ben_EsVoluntario, Nullable<int> cda_Id, string ben_TipoBeneficiario, Nullable<int> prog_Id, Nullable<int> ben_UsuarioCrea, Nullable<System.DateTime> ben_FechaCrea, Nullable<int> ben_UsuarioModifica, Nullable<System.DateTime> ben_FechaModifica)
+        {
+            var ben_IdParameter = ben_Id.HasValue ?
+                new ObjectParameter("ben_Id", ben_Id) :
+                new ObjectParameter("ben_Id", typeof(int));
+    
+            var ben_IdentificacionParameter = ben_Identificacion != null ?
+                new ObjectParameter("ben_Identificacion", ben_Identificacion) :
+                new ObjectParameter("ben_Identificacion", typeof(string));
+    
+            var ben_NombresParameter = ben_Nombres != null ?
+                new ObjectParameter("ben_Nombres", ben_Nombres) :
+                new ObjectParameter("ben_Nombres", typeof(string));
+    
+            var ben_ApellidosParameter = ben_Apellidos != null ?
+                new ObjectParameter("ben_Apellidos", ben_Apellidos) :
+                new ObjectParameter("ben_Apellidos", typeof(string));
+    
+            var ben_TelefonoParameter = ben_Telefono != null ?
+                new ObjectParameter("ben_Telefono", ben_Telefono) :
+                new ObjectParameter("ben_Telefono", typeof(string));
+    
+            var ben_CorreoElectronicoParameter = ben_CorreoElectronico != null ?
+                new ObjectParameter("ben_CorreoElectronico", ben_CorreoElectronico) :
+                new ObjectParameter("ben_CorreoElectronico", typeof(string));
+    
+            var mun_IdParameter = mun_Id != null ?
+                new ObjectParameter("mun_Id", mun_Id) :
+                new ObjectParameter("mun_Id", typeof(string));
+    
+            var ben_DireccionParameter = ben_Direccion != null ?
+                new ObjectParameter("ben_Direccion", ben_Direccion) :
+                new ObjectParameter("ben_Direccion", typeof(string));
+    
+            var ben_SexoParameter = ben_Sexo != null ?
+                new ObjectParameter("ben_Sexo", ben_Sexo) :
+                new ObjectParameter("ben_Sexo", typeof(string));
+    
+            var ben_FechaNacimientoParameter = ben_FechaNacimiento.HasValue ?
+                new ObjectParameter("ben_FechaNacimiento", ben_FechaNacimiento) :
+                new ObjectParameter("ben_FechaNacimiento", typeof(System.DateTime));
+    
+            var ben_NivelAcademicoParameter = ben_NivelAcademico != null ?
+                new ObjectParameter("ben_NivelAcademico", ben_NivelAcademico) :
+                new ObjectParameter("ben_NivelAcademico", typeof(string));
+    
+            var ben_AmigradoParameter = ben_Amigrado.HasValue ?
+                new ObjectParameter("ben_Amigrado", ben_Amigrado) :
+                new ObjectParameter("ben_Amigrado", typeof(bool));
+    
+            var ben_TieneIntencionesParameter = ben_TieneIntenciones.HasValue ?
+                new ObjectParameter("ben_TieneIntenciones", ben_TieneIntenciones) :
+                new ObjectParameter("ben_TieneIntenciones", typeof(bool));
+    
+            var ben_ExMiembroPandillaParameter = ben_ExMiembroPandilla.HasValue ?
+                new ObjectParameter("ben_ExMiembroPandilla", ben_ExMiembroPandilla) :
+                new ObjectParameter("ben_ExMiembroPandilla", typeof(bool));
+    
+            var ben_EsVoluntarioParameter = ben_EsVoluntario.HasValue ?
+                new ObjectParameter("ben_EsVoluntario", ben_EsVoluntario) :
+                new ObjectParameter("ben_EsVoluntario", typeof(bool));
+    
+            var cda_IdParameter = cda_Id.HasValue ?
+                new ObjectParameter("cda_Id", cda_Id) :
+                new ObjectParameter("cda_Id", typeof(int));
+    
+            var ben_TipoBeneficiarioParameter = ben_TipoBeneficiario != null ?
+                new ObjectParameter("ben_TipoBeneficiario", ben_TipoBeneficiario) :
+                new ObjectParameter("ben_TipoBeneficiario", typeof(string));
+    
+            var prog_IdParameter = prog_Id.HasValue ?
+                new ObjectParameter("prog_Id", prog_Id) :
+                new ObjectParameter("prog_Id", typeof(int));
+    
+            var ben_UsuarioCreaParameter = ben_UsuarioCrea.HasValue ?
+                new ObjectParameter("ben_UsuarioCrea", ben_UsuarioCrea) :
+                new ObjectParameter("ben_UsuarioCrea", typeof(int));
+    
+            var ben_FechaCreaParameter = ben_FechaCrea.HasValue ?
+                new ObjectParameter("ben_FechaCrea", ben_FechaCrea) :
+                new ObjectParameter("ben_FechaCrea", typeof(System.DateTime));
+    
+            var ben_UsuarioModificaParameter = ben_UsuarioModifica.HasValue ?
+                new ObjectParameter("ben_UsuarioModifica", ben_UsuarioModifica) :
+                new ObjectParameter("ben_UsuarioModifica", typeof(int));
+    
+            var ben_FechaModificaParameter = ben_FechaModifica.HasValue ?
+                new ObjectParameter("ben_FechaModifica", ben_FechaModifica) :
+                new ObjectParameter("ben_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Gral_tbBeneficiarios_Update", ben_IdParameter, ben_IdentificacionParameter, ben_NombresParameter, ben_ApellidosParameter, ben_TelefonoParameter, ben_CorreoElectronicoParameter, mun_IdParameter, ben_DireccionParameter, ben_SexoParameter, ben_FechaNacimientoParameter, ben_NivelAcademicoParameter, ben_AmigradoParameter, ben_TieneIntencionesParameter, ben_ExMiembroPandillaParameter, ben_EsVoluntarioParameter, cda_IdParameter, ben_TipoBeneficiarioParameter, prog_IdParameter, ben_UsuarioCreaParameter, ben_FechaCreaParameter, ben_UsuarioModificaParameter, ben_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Gral_tbCapacitacion_Beneficiarios_Insert(Nullable<int> cap_Id, Nullable<int> ben_Id)
+        {
+            var cap_IdParameter = cap_Id.HasValue ?
+                new ObjectParameter("cap_Id", cap_Id) :
+                new ObjectParameter("cap_Id", typeof(int));
+    
+            var ben_IdParameter = ben_Id.HasValue ?
+                new ObjectParameter("ben_Id", ben_Id) :
+                new ObjectParameter("ben_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Gral_tbCapacitacion_Beneficiarios_Insert", cap_IdParameter, ben_IdParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Gral_tbCapacitacion_Beneficiarios_Update(Nullable<int> cap_Id, Nullable<int> ben_Id)
+        {
+            var cap_IdParameter = cap_Id.HasValue ?
+                new ObjectParameter("cap_Id", cap_Id) :
+                new ObjectParameter("cap_Id", typeof(int));
+    
+            var ben_IdParameter = ben_Id.HasValue ?
+                new ObjectParameter("ben_Id", ben_Id) :
+                new ObjectParameter("ben_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Gral_tbCapacitacion_Beneficiarios_Update", cap_IdParameter, ben_IdParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Gral_tbCapacitacion_Insert(Nullable<int> tptal_Id, Nullable<int> cdor_Id, Nullable<System.DateTime> cap_Fecha, string cap_Lugar, Nullable<int> cap_UsuarioCrea, Nullable<System.DateTime> cap_FechaCrea)
+        {
+            var tptal_IdParameter = tptal_Id.HasValue ?
+                new ObjectParameter("tptal_Id", tptal_Id) :
+                new ObjectParameter("tptal_Id", typeof(int));
+    
+            var cdor_IdParameter = cdor_Id.HasValue ?
+                new ObjectParameter("cdor_Id", cdor_Id) :
+                new ObjectParameter("cdor_Id", typeof(int));
+    
+            var cap_FechaParameter = cap_Fecha.HasValue ?
+                new ObjectParameter("cap_Fecha", cap_Fecha) :
+                new ObjectParameter("cap_Fecha", typeof(System.DateTime));
+    
+            var cap_LugarParameter = cap_Lugar != null ?
+                new ObjectParameter("cap_Lugar", cap_Lugar) :
+                new ObjectParameter("cap_Lugar", typeof(string));
+    
+            var cap_UsuarioCreaParameter = cap_UsuarioCrea.HasValue ?
+                new ObjectParameter("cap_UsuarioCrea", cap_UsuarioCrea) :
+                new ObjectParameter("cap_UsuarioCrea", typeof(int));
+    
+            var cap_FechaCreaParameter = cap_FechaCrea.HasValue ?
+                new ObjectParameter("cap_FechaCrea", cap_FechaCrea) :
+                new ObjectParameter("cap_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Gral_tbCapacitacion_Insert", tptal_IdParameter, cdor_IdParameter, cap_FechaParameter, cap_LugarParameter, cap_UsuarioCreaParameter, cap_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Gral_tbCapacitacion_Update(Nullable<int> cap_Id, Nullable<int> tptal_Id, Nullable<int> cdor_Id, Nullable<System.DateTime> cap_Fecha, string cap_Lugar, Nullable<int> cap_UsuarioCrea, Nullable<System.DateTime> cap_FechaCrea, Nullable<int> cap_UsuarioModifica, Nullable<System.DateTime> cap_FechaModifica)
+        {
+            var cap_IdParameter = cap_Id.HasValue ?
+                new ObjectParameter("cap_Id", cap_Id) :
+                new ObjectParameter("cap_Id", typeof(int));
+    
+            var tptal_IdParameter = tptal_Id.HasValue ?
+                new ObjectParameter("tptal_Id", tptal_Id) :
+                new ObjectParameter("tptal_Id", typeof(int));
+    
+            var cdor_IdParameter = cdor_Id.HasValue ?
+                new ObjectParameter("cdor_Id", cdor_Id) :
+                new ObjectParameter("cdor_Id", typeof(int));
+    
+            var cap_FechaParameter = cap_Fecha.HasValue ?
+                new ObjectParameter("cap_Fecha", cap_Fecha) :
+                new ObjectParameter("cap_Fecha", typeof(System.DateTime));
+    
+            var cap_LugarParameter = cap_Lugar != null ?
+                new ObjectParameter("cap_Lugar", cap_Lugar) :
+                new ObjectParameter("cap_Lugar", typeof(string));
+    
+            var cap_UsuarioCreaParameter = cap_UsuarioCrea.HasValue ?
+                new ObjectParameter("cap_UsuarioCrea", cap_UsuarioCrea) :
+                new ObjectParameter("cap_UsuarioCrea", typeof(int));
+    
+            var cap_FechaCreaParameter = cap_FechaCrea.HasValue ?
+                new ObjectParameter("cap_FechaCrea", cap_FechaCrea) :
+                new ObjectParameter("cap_FechaCrea", typeof(System.DateTime));
+    
+            var cap_UsuarioModificaParameter = cap_UsuarioModifica.HasValue ?
+                new ObjectParameter("cap_UsuarioModifica", cap_UsuarioModifica) :
+                new ObjectParameter("cap_UsuarioModifica", typeof(int));
+    
+            var cap_FechaModificaParameter = cap_FechaModifica.HasValue ?
+                new ObjectParameter("cap_FechaModifica", cap_FechaModifica) :
+                new ObjectParameter("cap_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Gral_tbCapacitacion_Update", cap_IdParameter, tptal_IdParameter, cdor_IdParameter, cap_FechaParameter, cap_LugarParameter, cap_UsuarioCreaParameter, cap_FechaCreaParameter, cap_UsuarioModificaParameter, cap_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Gral_tbCapacitador_Insert(string cdor_Identificacion, string cdor_Nombres, string cdor_Apellidos, string cdor_Telefono, string cdor_CorreoElectronico, string cdor_Direccion, string cdor_Sexo, Nullable<System.DateTime> cdor_FechaNacimiento, Nullable<bool> cdor_EsActivo, Nullable<int> cdor_UsuarioCrea, Nullable<System.DateTime> cdor_FechaCrea)
+        {
+            var cdor_IdentificacionParameter = cdor_Identificacion != null ?
+                new ObjectParameter("cdor_Identificacion", cdor_Identificacion) :
+                new ObjectParameter("cdor_Identificacion", typeof(string));
+    
+            var cdor_NombresParameter = cdor_Nombres != null ?
+                new ObjectParameter("cdor_Nombres", cdor_Nombres) :
+                new ObjectParameter("cdor_Nombres", typeof(string));
+    
+            var cdor_ApellidosParameter = cdor_Apellidos != null ?
+                new ObjectParameter("cdor_Apellidos", cdor_Apellidos) :
+                new ObjectParameter("cdor_Apellidos", typeof(string));
+    
+            var cdor_TelefonoParameter = cdor_Telefono != null ?
+                new ObjectParameter("cdor_Telefono", cdor_Telefono) :
+                new ObjectParameter("cdor_Telefono", typeof(string));
+    
+            var cdor_CorreoElectronicoParameter = cdor_CorreoElectronico != null ?
+                new ObjectParameter("cdor_CorreoElectronico", cdor_CorreoElectronico) :
+                new ObjectParameter("cdor_CorreoElectronico", typeof(string));
+    
+            var cdor_DireccionParameter = cdor_Direccion != null ?
+                new ObjectParameter("cdor_Direccion", cdor_Direccion) :
+                new ObjectParameter("cdor_Direccion", typeof(string));
+    
+            var cdor_SexoParameter = cdor_Sexo != null ?
+                new ObjectParameter("cdor_Sexo", cdor_Sexo) :
+                new ObjectParameter("cdor_Sexo", typeof(string));
+    
+            var cdor_FechaNacimientoParameter = cdor_FechaNacimiento.HasValue ?
+                new ObjectParameter("cdor_FechaNacimiento", cdor_FechaNacimiento) :
+                new ObjectParameter("cdor_FechaNacimiento", typeof(System.DateTime));
+    
+            var cdor_EsActivoParameter = cdor_EsActivo.HasValue ?
+                new ObjectParameter("cdor_EsActivo", cdor_EsActivo) :
+                new ObjectParameter("cdor_EsActivo", typeof(bool));
+    
+            var cdor_UsuarioCreaParameter = cdor_UsuarioCrea.HasValue ?
+                new ObjectParameter("cdor_UsuarioCrea", cdor_UsuarioCrea) :
+                new ObjectParameter("cdor_UsuarioCrea", typeof(int));
+    
+            var cdor_FechaCreaParameter = cdor_FechaCrea.HasValue ?
+                new ObjectParameter("cdor_FechaCrea", cdor_FechaCrea) :
+                new ObjectParameter("cdor_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Gral_tbCapacitador_Insert", cdor_IdentificacionParameter, cdor_NombresParameter, cdor_ApellidosParameter, cdor_TelefonoParameter, cdor_CorreoElectronicoParameter, cdor_DireccionParameter, cdor_SexoParameter, cdor_FechaNacimientoParameter, cdor_EsActivoParameter, cdor_UsuarioCreaParameter, cdor_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Gral_tbCapacitador_Update(Nullable<int> cdor_Id, string cdor_Identificacion, string cdor_Nombres, string cdor_Apellidos, string cdor_Telefono, string cdor_CorreoElectronico, string cdor_Direccion, string cdor_Sexo, Nullable<System.DateTime> cdor_FechaNacimiento, Nullable<bool> cdor_EsActivo, Nullable<int> cdor_UsuarioCrea, Nullable<System.DateTime> cdor_FechaCrea, Nullable<int> cdor_UsuarioModifica, Nullable<System.DateTime> cdor_FechaModifica)
+        {
+            var cdor_IdParameter = cdor_Id.HasValue ?
+                new ObjectParameter("cdor_Id", cdor_Id) :
+                new ObjectParameter("cdor_Id", typeof(int));
+    
+            var cdor_IdentificacionParameter = cdor_Identificacion != null ?
+                new ObjectParameter("cdor_Identificacion", cdor_Identificacion) :
+                new ObjectParameter("cdor_Identificacion", typeof(string));
+    
+            var cdor_NombresParameter = cdor_Nombres != null ?
+                new ObjectParameter("cdor_Nombres", cdor_Nombres) :
+                new ObjectParameter("cdor_Nombres", typeof(string));
+    
+            var cdor_ApellidosParameter = cdor_Apellidos != null ?
+                new ObjectParameter("cdor_Apellidos", cdor_Apellidos) :
+                new ObjectParameter("cdor_Apellidos", typeof(string));
+    
+            var cdor_TelefonoParameter = cdor_Telefono != null ?
+                new ObjectParameter("cdor_Telefono", cdor_Telefono) :
+                new ObjectParameter("cdor_Telefono", typeof(string));
+    
+            var cdor_CorreoElectronicoParameter = cdor_CorreoElectronico != null ?
+                new ObjectParameter("cdor_CorreoElectronico", cdor_CorreoElectronico) :
+                new ObjectParameter("cdor_CorreoElectronico", typeof(string));
+    
+            var cdor_DireccionParameter = cdor_Direccion != null ?
+                new ObjectParameter("cdor_Direccion", cdor_Direccion) :
+                new ObjectParameter("cdor_Direccion", typeof(string));
+    
+            var cdor_SexoParameter = cdor_Sexo != null ?
+                new ObjectParameter("cdor_Sexo", cdor_Sexo) :
+                new ObjectParameter("cdor_Sexo", typeof(string));
+    
+            var cdor_FechaNacimientoParameter = cdor_FechaNacimiento.HasValue ?
+                new ObjectParameter("cdor_FechaNacimiento", cdor_FechaNacimiento) :
+                new ObjectParameter("cdor_FechaNacimiento", typeof(System.DateTime));
+    
+            var cdor_EsActivoParameter = cdor_EsActivo.HasValue ?
+                new ObjectParameter("cdor_EsActivo", cdor_EsActivo) :
+                new ObjectParameter("cdor_EsActivo", typeof(bool));
+    
+            var cdor_UsuarioCreaParameter = cdor_UsuarioCrea.HasValue ?
+                new ObjectParameter("cdor_UsuarioCrea", cdor_UsuarioCrea) :
+                new ObjectParameter("cdor_UsuarioCrea", typeof(int));
+    
+            var cdor_FechaCreaParameter = cdor_FechaCrea.HasValue ?
+                new ObjectParameter("cdor_FechaCrea", cdor_FechaCrea) :
+                new ObjectParameter("cdor_FechaCrea", typeof(System.DateTime));
+    
+            var cdor_UsuarioModificaParameter = cdor_UsuarioModifica.HasValue ?
+                new ObjectParameter("cdor_UsuarioModifica", cdor_UsuarioModifica) :
+                new ObjectParameter("cdor_UsuarioModifica", typeof(int));
+    
+            var cdor_FechaModificaParameter = cdor_FechaModifica.HasValue ?
+                new ObjectParameter("cdor_FechaModifica", cdor_FechaModifica) :
+                new ObjectParameter("cdor_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Gral_tbCapacitador_Update", cdor_IdParameter, cdor_IdentificacionParameter, cdor_NombresParameter, cdor_ApellidosParameter, cdor_TelefonoParameter, cdor_CorreoElectronicoParameter, cdor_DireccionParameter, cdor_SexoParameter, cdor_FechaNacimientoParameter, cdor_EsActivoParameter, cdor_UsuarioCreaParameter, cdor_FechaCreaParameter, cdor_UsuarioModificaParameter, cdor_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Gral_tbCentroAlcance_Insert(string cda_Descripcion, string mun_Id, Nullable<bool> cda_EsAcademia, string cda_TipoAcademia, Nullable<int> cda_UsuarioCrea, Nullable<System.DateTime> cda_FechaCrea)
+        {
+            var cda_DescripcionParameter = cda_Descripcion != null ?
+                new ObjectParameter("cda_Descripcion", cda_Descripcion) :
+                new ObjectParameter("cda_Descripcion", typeof(string));
+    
+            var mun_IdParameter = mun_Id != null ?
+                new ObjectParameter("mun_Id", mun_Id) :
+                new ObjectParameter("mun_Id", typeof(string));
+    
+            var cda_EsAcademiaParameter = cda_EsAcademia.HasValue ?
+                new ObjectParameter("cda_EsAcademia", cda_EsAcademia) :
+                new ObjectParameter("cda_EsAcademia", typeof(bool));
+    
+            var cda_TipoAcademiaParameter = cda_TipoAcademia != null ?
+                new ObjectParameter("cda_TipoAcademia", cda_TipoAcademia) :
+                new ObjectParameter("cda_TipoAcademia", typeof(string));
+    
+            var cda_UsuarioCreaParameter = cda_UsuarioCrea.HasValue ?
+                new ObjectParameter("cda_UsuarioCrea", cda_UsuarioCrea) :
+                new ObjectParameter("cda_UsuarioCrea", typeof(int));
+    
+            var cda_FechaCreaParameter = cda_FechaCrea.HasValue ?
+                new ObjectParameter("cda_FechaCrea", cda_FechaCrea) :
+                new ObjectParameter("cda_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Gral_tbCentroAlcance_Insert", cda_DescripcionParameter, mun_IdParameter, cda_EsAcademiaParameter, cda_TipoAcademiaParameter, cda_UsuarioCreaParameter, cda_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Gral_tbCentroAlcance_Update(Nullable<int> cda_Id, string cda_Descripcion, string mun_Id, Nullable<bool> cda_EsAcademia, string cda_TipoAcademia, Nullable<int> cda_UsuarioCrea, Nullable<System.DateTime> cda_FechaCrea, Nullable<int> cda_UsuarioModifica, Nullable<System.DateTime> cda_FechaModifica)
+        {
+            var cda_IdParameter = cda_Id.HasValue ?
+                new ObjectParameter("cda_Id", cda_Id) :
+                new ObjectParameter("cda_Id", typeof(int));
+    
+            var cda_DescripcionParameter = cda_Descripcion != null ?
+                new ObjectParameter("cda_Descripcion", cda_Descripcion) :
+                new ObjectParameter("cda_Descripcion", typeof(string));
+    
+            var mun_IdParameter = mun_Id != null ?
+                new ObjectParameter("mun_Id", mun_Id) :
+                new ObjectParameter("mun_Id", typeof(string));
+    
+            var cda_EsAcademiaParameter = cda_EsAcademia.HasValue ?
+                new ObjectParameter("cda_EsAcademia", cda_EsAcademia) :
+                new ObjectParameter("cda_EsAcademia", typeof(bool));
+    
+            var cda_TipoAcademiaParameter = cda_TipoAcademia != null ?
+                new ObjectParameter("cda_TipoAcademia", cda_TipoAcademia) :
+                new ObjectParameter("cda_TipoAcademia", typeof(string));
+    
+            var cda_UsuarioCreaParameter = cda_UsuarioCrea.HasValue ?
+                new ObjectParameter("cda_UsuarioCrea", cda_UsuarioCrea) :
+                new ObjectParameter("cda_UsuarioCrea", typeof(int));
+    
+            var cda_FechaCreaParameter = cda_FechaCrea.HasValue ?
+                new ObjectParameter("cda_FechaCrea", cda_FechaCrea) :
+                new ObjectParameter("cda_FechaCrea", typeof(System.DateTime));
+    
+            var cda_UsuarioModificaParameter = cda_UsuarioModifica.HasValue ?
+                new ObjectParameter("cda_UsuarioModifica", cda_UsuarioModifica) :
+                new ObjectParameter("cda_UsuarioModifica", typeof(int));
+    
+            var cda_FechaModificaParameter = cda_FechaModifica.HasValue ?
+                new ObjectParameter("cda_FechaModifica", cda_FechaModifica) :
+                new ObjectParameter("cda_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Gral_tbCentroAlcance_Update", cda_IdParameter, cda_DescripcionParameter, mun_IdParameter, cda_EsAcademiaParameter, cda_TipoAcademiaParameter, cda_UsuarioCreaParameter, cda_FechaCreaParameter, cda_UsuarioModificaParameter, cda_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Gral_tbEmpleabilidad_Insert(Nullable<int> ben_Id, Nullable<int> emp_Id, Nullable<bool> empl_EsAcademia, Nullable<System.DateTime> empl_FechaIngreso, string empl_CargoDesempeña, Nullable<int> empl_UsuarioCrea, Nullable<System.DateTime> empl_FechaCrea)
+        {
+            var ben_IdParameter = ben_Id.HasValue ?
+                new ObjectParameter("ben_Id", ben_Id) :
+                new ObjectParameter("ben_Id", typeof(int));
+    
+            var emp_IdParameter = emp_Id.HasValue ?
+                new ObjectParameter("emp_Id", emp_Id) :
+                new ObjectParameter("emp_Id", typeof(int));
+    
+            var empl_EsAcademiaParameter = empl_EsAcademia.HasValue ?
+                new ObjectParameter("empl_EsAcademia", empl_EsAcademia) :
+                new ObjectParameter("empl_EsAcademia", typeof(bool));
+    
+            var empl_FechaIngresoParameter = empl_FechaIngreso.HasValue ?
+                new ObjectParameter("empl_FechaIngreso", empl_FechaIngreso) :
+                new ObjectParameter("empl_FechaIngreso", typeof(System.DateTime));
+    
+            var empl_CargoDesempeñaParameter = empl_CargoDesempeña != null ?
+                new ObjectParameter("empl_CargoDesempeña", empl_CargoDesempeña) :
+                new ObjectParameter("empl_CargoDesempeña", typeof(string));
+    
+            var empl_UsuarioCreaParameter = empl_UsuarioCrea.HasValue ?
+                new ObjectParameter("empl_UsuarioCrea", empl_UsuarioCrea) :
+                new ObjectParameter("empl_UsuarioCrea", typeof(int));
+    
+            var empl_FechaCreaParameter = empl_FechaCrea.HasValue ?
+                new ObjectParameter("empl_FechaCrea", empl_FechaCrea) :
+                new ObjectParameter("empl_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Gral_tbEmpleabilidad_Insert", ben_IdParameter, emp_IdParameter, empl_EsAcademiaParameter, empl_FechaIngresoParameter, empl_CargoDesempeñaParameter, empl_UsuarioCreaParameter, empl_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Gral_tbEmpleabilidad_Update(Nullable<int> empl_Id, Nullable<int> ben_Id, Nullable<int> emp_Id, Nullable<bool> empl_EsAcademia, Nullable<System.DateTime> empl_FechaIngreso, string empl_CargoDesempeña, Nullable<int> empl_UsuarioCrea, Nullable<System.DateTime> empl_FechaCrea, Nullable<int> empl_UsuarioModifica, Nullable<System.DateTime> empl_FechaModifica)
+        {
+            var empl_IdParameter = empl_Id.HasValue ?
+                new ObjectParameter("empl_Id", empl_Id) :
+                new ObjectParameter("empl_Id", typeof(int));
+    
+            var ben_IdParameter = ben_Id.HasValue ?
+                new ObjectParameter("ben_Id", ben_Id) :
+                new ObjectParameter("ben_Id", typeof(int));
+    
+            var emp_IdParameter = emp_Id.HasValue ?
+                new ObjectParameter("emp_Id", emp_Id) :
+                new ObjectParameter("emp_Id", typeof(int));
+    
+            var empl_EsAcademiaParameter = empl_EsAcademia.HasValue ?
+                new ObjectParameter("empl_EsAcademia", empl_EsAcademia) :
+                new ObjectParameter("empl_EsAcademia", typeof(bool));
+    
+            var empl_FechaIngresoParameter = empl_FechaIngreso.HasValue ?
+                new ObjectParameter("empl_FechaIngreso", empl_FechaIngreso) :
+                new ObjectParameter("empl_FechaIngreso", typeof(System.DateTime));
+    
+            var empl_CargoDesempeñaParameter = empl_CargoDesempeña != null ?
+                new ObjectParameter("empl_CargoDesempeña", empl_CargoDesempeña) :
+                new ObjectParameter("empl_CargoDesempeña", typeof(string));
+    
+            var empl_UsuarioCreaParameter = empl_UsuarioCrea.HasValue ?
+                new ObjectParameter("empl_UsuarioCrea", empl_UsuarioCrea) :
+                new ObjectParameter("empl_UsuarioCrea", typeof(int));
+    
+            var empl_FechaCreaParameter = empl_FechaCrea.HasValue ?
+                new ObjectParameter("empl_FechaCrea", empl_FechaCrea) :
+                new ObjectParameter("empl_FechaCrea", typeof(System.DateTime));
+    
+            var empl_UsuarioModificaParameter = empl_UsuarioModifica.HasValue ?
+                new ObjectParameter("empl_UsuarioModifica", empl_UsuarioModifica) :
+                new ObjectParameter("empl_UsuarioModifica", typeof(int));
+    
+            var empl_FechaModificaParameter = empl_FechaModifica.HasValue ?
+                new ObjectParameter("empl_FechaModifica", empl_FechaModifica) :
+                new ObjectParameter("empl_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Gral_tbEmpleabilidad_Update", empl_IdParameter, ben_IdParameter, emp_IdParameter, empl_EsAcademiaParameter, empl_FechaIngresoParameter, empl_CargoDesempeñaParameter, empl_UsuarioCreaParameter, empl_FechaCreaParameter, empl_UsuarioModificaParameter, empl_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Gral_tbEmprendimiento_Insert(Nullable<int> ben_Id, Nullable<int> rub_Id, string empr_NombreEmprendimiento, Nullable<System.DateTime> empr_FechaInauguracion, Nullable<decimal> empr_ValorKit, string empr_DireccionNegocio, Nullable<int> empr_UsuarioCrea, Nullable<System.DateTime> empr_FechaCrea)
+        {
+            var ben_IdParameter = ben_Id.HasValue ?
+                new ObjectParameter("ben_Id", ben_Id) :
+                new ObjectParameter("ben_Id", typeof(int));
+    
+            var rub_IdParameter = rub_Id.HasValue ?
+                new ObjectParameter("rub_Id", rub_Id) :
+                new ObjectParameter("rub_Id", typeof(int));
+    
+            var empr_NombreEmprendimientoParameter = empr_NombreEmprendimiento != null ?
+                new ObjectParameter("empr_NombreEmprendimiento", empr_NombreEmprendimiento) :
+                new ObjectParameter("empr_NombreEmprendimiento", typeof(string));
+    
+            var empr_FechaInauguracionParameter = empr_FechaInauguracion.HasValue ?
+                new ObjectParameter("empr_FechaInauguracion", empr_FechaInauguracion) :
+                new ObjectParameter("empr_FechaInauguracion", typeof(System.DateTime));
+    
+            var empr_ValorKitParameter = empr_ValorKit.HasValue ?
+                new ObjectParameter("empr_ValorKit", empr_ValorKit) :
+                new ObjectParameter("empr_ValorKit", typeof(decimal));
+    
+            var empr_DireccionNegocioParameter = empr_DireccionNegocio != null ?
+                new ObjectParameter("empr_DireccionNegocio", empr_DireccionNegocio) :
+                new ObjectParameter("empr_DireccionNegocio", typeof(string));
+    
+            var empr_UsuarioCreaParameter = empr_UsuarioCrea.HasValue ?
+                new ObjectParameter("empr_UsuarioCrea", empr_UsuarioCrea) :
+                new ObjectParameter("empr_UsuarioCrea", typeof(int));
+    
+            var empr_FechaCreaParameter = empr_FechaCrea.HasValue ?
+                new ObjectParameter("empr_FechaCrea", empr_FechaCrea) :
+                new ObjectParameter("empr_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Gral_tbEmprendimiento_Insert", ben_IdParameter, rub_IdParameter, empr_NombreEmprendimientoParameter, empr_FechaInauguracionParameter, empr_ValorKitParameter, empr_DireccionNegocioParameter, empr_UsuarioCreaParameter, empr_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Gral_tbEmprendimiento_Update(Nullable<int> empr_Id, Nullable<int> ben_Id, Nullable<int> rub_Id, string empr_NombreEmprendimiento, Nullable<System.DateTime> empr_FechaInauguracion, Nullable<decimal> empr_ValorKit, string empr_DireccionNegocio, Nullable<int> empr_UsuarioCrea, Nullable<System.DateTime> empr_FechaCrea, Nullable<int> empr_UsuarioModifica, Nullable<System.DateTime> empr_FechaModifica)
+        {
+            var empr_IdParameter = empr_Id.HasValue ?
+                new ObjectParameter("empr_Id", empr_Id) :
+                new ObjectParameter("empr_Id", typeof(int));
+    
+            var ben_IdParameter = ben_Id.HasValue ?
+                new ObjectParameter("ben_Id", ben_Id) :
+                new ObjectParameter("ben_Id", typeof(int));
+    
+            var rub_IdParameter = rub_Id.HasValue ?
+                new ObjectParameter("rub_Id", rub_Id) :
+                new ObjectParameter("rub_Id", typeof(int));
+    
+            var empr_NombreEmprendimientoParameter = empr_NombreEmprendimiento != null ?
+                new ObjectParameter("empr_NombreEmprendimiento", empr_NombreEmprendimiento) :
+                new ObjectParameter("empr_NombreEmprendimiento", typeof(string));
+    
+            var empr_FechaInauguracionParameter = empr_FechaInauguracion.HasValue ?
+                new ObjectParameter("empr_FechaInauguracion", empr_FechaInauguracion) :
+                new ObjectParameter("empr_FechaInauguracion", typeof(System.DateTime));
+    
+            var empr_ValorKitParameter = empr_ValorKit.HasValue ?
+                new ObjectParameter("empr_ValorKit", empr_ValorKit) :
+                new ObjectParameter("empr_ValorKit", typeof(decimal));
+    
+            var empr_DireccionNegocioParameter = empr_DireccionNegocio != null ?
+                new ObjectParameter("empr_DireccionNegocio", empr_DireccionNegocio) :
+                new ObjectParameter("empr_DireccionNegocio", typeof(string));
+    
+            var empr_UsuarioCreaParameter = empr_UsuarioCrea.HasValue ?
+                new ObjectParameter("empr_UsuarioCrea", empr_UsuarioCrea) :
+                new ObjectParameter("empr_UsuarioCrea", typeof(int));
+    
+            var empr_FechaCreaParameter = empr_FechaCrea.HasValue ?
+                new ObjectParameter("empr_FechaCrea", empr_FechaCrea) :
+                new ObjectParameter("empr_FechaCrea", typeof(System.DateTime));
+    
+            var empr_UsuarioModificaParameter = empr_UsuarioModifica.HasValue ?
+                new ObjectParameter("empr_UsuarioModifica", empr_UsuarioModifica) :
+                new ObjectParameter("empr_UsuarioModifica", typeof(int));
+    
+            var empr_FechaModificaParameter = empr_FechaModifica.HasValue ?
+                new ObjectParameter("empr_FechaModifica", empr_FechaModifica) :
+                new ObjectParameter("empr_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Gral_tbEmprendimiento_Update", empr_IdParameter, ben_IdParameter, rub_IdParameter, empr_NombreEmprendimientoParameter, empr_FechaInauguracionParameter, empr_ValorKitParameter, empr_DireccionNegocioParameter, empr_UsuarioCreaParameter, empr_FechaCreaParameter, empr_UsuarioModificaParameter, empr_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Gral_tbEmpresa_Insert(string emp_Nombre, Nullable<int> rub_Id, string emp_NombreContacto, string emp_CorreoContacto, string emp_TelefonoContacto, Nullable<int> emp_UsuarioCrea, Nullable<System.DateTime> emp_FechaCrea)
+        {
+            var emp_NombreParameter = emp_Nombre != null ?
+                new ObjectParameter("emp_Nombre", emp_Nombre) :
+                new ObjectParameter("emp_Nombre", typeof(string));
+    
+            var rub_IdParameter = rub_Id.HasValue ?
+                new ObjectParameter("rub_Id", rub_Id) :
+                new ObjectParameter("rub_Id", typeof(int));
+    
+            var emp_NombreContactoParameter = emp_NombreContacto != null ?
+                new ObjectParameter("emp_NombreContacto", emp_NombreContacto) :
+                new ObjectParameter("emp_NombreContacto", typeof(string));
+    
+            var emp_CorreoContactoParameter = emp_CorreoContacto != null ?
+                new ObjectParameter("emp_CorreoContacto", emp_CorreoContacto) :
+                new ObjectParameter("emp_CorreoContacto", typeof(string));
+    
+            var emp_TelefonoContactoParameter = emp_TelefonoContacto != null ?
+                new ObjectParameter("emp_TelefonoContacto", emp_TelefonoContacto) :
+                new ObjectParameter("emp_TelefonoContacto", typeof(string));
+    
+            var emp_UsuarioCreaParameter = emp_UsuarioCrea.HasValue ?
+                new ObjectParameter("emp_UsuarioCrea", emp_UsuarioCrea) :
+                new ObjectParameter("emp_UsuarioCrea", typeof(int));
+    
+            var emp_FechaCreaParameter = emp_FechaCrea.HasValue ?
+                new ObjectParameter("emp_FechaCrea", emp_FechaCrea) :
+                new ObjectParameter("emp_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Gral_tbEmpresa_Insert", emp_NombreParameter, rub_IdParameter, emp_NombreContactoParameter, emp_CorreoContactoParameter, emp_TelefonoContactoParameter, emp_UsuarioCreaParameter, emp_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Gral_tbEmpresa_Update(Nullable<int> emp_Id, string emp_Nombre, Nullable<int> rub_Id, string emp_NombreContacto, string emp_CorreoContacto, string emp_TelefonoContacto, Nullable<int> emp_UsuarioCrea, Nullable<System.DateTime> emp_FechaCrea, Nullable<int> emp_UsuarioModifica, Nullable<System.DateTime> emp_FechaModifica)
+        {
+            var emp_IdParameter = emp_Id.HasValue ?
+                new ObjectParameter("emp_Id", emp_Id) :
+                new ObjectParameter("emp_Id", typeof(int));
+    
+            var emp_NombreParameter = emp_Nombre != null ?
+                new ObjectParameter("emp_Nombre", emp_Nombre) :
+                new ObjectParameter("emp_Nombre", typeof(string));
+    
+            var rub_IdParameter = rub_Id.HasValue ?
+                new ObjectParameter("rub_Id", rub_Id) :
+                new ObjectParameter("rub_Id", typeof(int));
+    
+            var emp_NombreContactoParameter = emp_NombreContacto != null ?
+                new ObjectParameter("emp_NombreContacto", emp_NombreContacto) :
+                new ObjectParameter("emp_NombreContacto", typeof(string));
+    
+            var emp_CorreoContactoParameter = emp_CorreoContacto != null ?
+                new ObjectParameter("emp_CorreoContacto", emp_CorreoContacto) :
+                new ObjectParameter("emp_CorreoContacto", typeof(string));
+    
+            var emp_TelefonoContactoParameter = emp_TelefonoContacto != null ?
+                new ObjectParameter("emp_TelefonoContacto", emp_TelefonoContacto) :
+                new ObjectParameter("emp_TelefonoContacto", typeof(string));
+    
+            var emp_UsuarioCreaParameter = emp_UsuarioCrea.HasValue ?
+                new ObjectParameter("emp_UsuarioCrea", emp_UsuarioCrea) :
+                new ObjectParameter("emp_UsuarioCrea", typeof(int));
+    
+            var emp_FechaCreaParameter = emp_FechaCrea.HasValue ?
+                new ObjectParameter("emp_FechaCrea", emp_FechaCrea) :
+                new ObjectParameter("emp_FechaCrea", typeof(System.DateTime));
+    
+            var emp_UsuarioModificaParameter = emp_UsuarioModifica.HasValue ?
+                new ObjectParameter("emp_UsuarioModifica", emp_UsuarioModifica) :
+                new ObjectParameter("emp_UsuarioModifica", typeof(int));
+    
+            var emp_FechaModificaParameter = emp_FechaModifica.HasValue ?
+                new ObjectParameter("emp_FechaModifica", emp_FechaModifica) :
+                new ObjectParameter("emp_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Gral_tbEmpresa_Update", emp_IdParameter, emp_NombreParameter, rub_IdParameter, emp_NombreContactoParameter, emp_CorreoContactoParameter, emp_TelefonoContactoParameter, emp_UsuarioCreaParameter, emp_FechaCreaParameter, emp_UsuarioModificaParameter, emp_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Gral_tbSeguimiento_Insert(Nullable<int> ben_Id, Nullable<System.DateTime> seg_Fecha, string seg_Observaciones, Nullable<int> tpseg_Id, Nullable<int> seg_UsuarioCrea, Nullable<System.DateTime> seg_FechaCrea)
+        {
+            var ben_IdParameter = ben_Id.HasValue ?
+                new ObjectParameter("ben_Id", ben_Id) :
+                new ObjectParameter("ben_Id", typeof(int));
+    
+            var seg_FechaParameter = seg_Fecha.HasValue ?
+                new ObjectParameter("seg_Fecha", seg_Fecha) :
+                new ObjectParameter("seg_Fecha", typeof(System.DateTime));
+    
+            var seg_ObservacionesParameter = seg_Observaciones != null ?
+                new ObjectParameter("seg_Observaciones", seg_Observaciones) :
+                new ObjectParameter("seg_Observaciones", typeof(string));
+    
+            var tpseg_IdParameter = tpseg_Id.HasValue ?
+                new ObjectParameter("tpseg_Id", tpseg_Id) :
+                new ObjectParameter("tpseg_Id", typeof(int));
+    
+            var seg_UsuarioCreaParameter = seg_UsuarioCrea.HasValue ?
+                new ObjectParameter("seg_UsuarioCrea", seg_UsuarioCrea) :
+                new ObjectParameter("seg_UsuarioCrea", typeof(int));
+    
+            var seg_FechaCreaParameter = seg_FechaCrea.HasValue ?
+                new ObjectParameter("seg_FechaCrea", seg_FechaCrea) :
+                new ObjectParameter("seg_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Gral_tbSeguimiento_Insert", ben_IdParameter, seg_FechaParameter, seg_ObservacionesParameter, tpseg_IdParameter, seg_UsuarioCreaParameter, seg_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Gral_tbSeguimiento_Update(Nullable<int> seg_Id, Nullable<int> ben_Id, Nullable<System.DateTime> seg_Fecha, string seg_Observaciones, Nullable<int> tpseg_Id, Nullable<int> seg_UsuarioCrea, Nullable<System.DateTime> seg_FechaCrea, Nullable<int> seg_UsuarioModifica, Nullable<System.DateTime> seg_FechaModifica)
+        {
+            var seg_IdParameter = seg_Id.HasValue ?
+                new ObjectParameter("seg_Id", seg_Id) :
+                new ObjectParameter("seg_Id", typeof(int));
+    
+            var ben_IdParameter = ben_Id.HasValue ?
+                new ObjectParameter("ben_Id", ben_Id) :
+                new ObjectParameter("ben_Id", typeof(int));
+    
+            var seg_FechaParameter = seg_Fecha.HasValue ?
+                new ObjectParameter("seg_Fecha", seg_Fecha) :
+                new ObjectParameter("seg_Fecha", typeof(System.DateTime));
+    
+            var seg_ObservacionesParameter = seg_Observaciones != null ?
+                new ObjectParameter("seg_Observaciones", seg_Observaciones) :
+                new ObjectParameter("seg_Observaciones", typeof(string));
+    
+            var tpseg_IdParameter = tpseg_Id.HasValue ?
+                new ObjectParameter("tpseg_Id", tpseg_Id) :
+                new ObjectParameter("tpseg_Id", typeof(int));
+    
+            var seg_UsuarioCreaParameter = seg_UsuarioCrea.HasValue ?
+                new ObjectParameter("seg_UsuarioCrea", seg_UsuarioCrea) :
+                new ObjectParameter("seg_UsuarioCrea", typeof(int));
+    
+            var seg_FechaCreaParameter = seg_FechaCrea.HasValue ?
+                new ObjectParameter("seg_FechaCrea", seg_FechaCrea) :
+                new ObjectParameter("seg_FechaCrea", typeof(System.DateTime));
+    
+            var seg_UsuarioModificaParameter = seg_UsuarioModifica.HasValue ?
+                new ObjectParameter("seg_UsuarioModifica", seg_UsuarioModifica) :
+                new ObjectParameter("seg_UsuarioModifica", typeof(int));
+    
+            var seg_FechaModificaParameter = seg_FechaModifica.HasValue ?
+                new ObjectParameter("seg_FechaModifica", seg_FechaModifica) :
+                new ObjectParameter("seg_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Gral_tbSeguimiento_Update", seg_IdParameter, ben_IdParameter, seg_FechaParameter, seg_ObservacionesParameter, tpseg_IdParameter, seg_UsuarioCreaParameter, seg_FechaCreaParameter, seg_UsuarioModificaParameter, seg_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Ctl_tbTipoTaller_tbBeneficiario_Insert(Nullable<int> prog_Id, string tptal_Titulo, string tptal_Descripcion, string tptal_Video, string tptal_MaterialDidactico1, string tptal_MaterialDidactico2, Nullable<int> even_Id, Nullable<int> evac_Id, Nullable<int> tptal_Es_Activo, Nullable<bool> tptal_EstadoEnLinea, Nullable<int> tptal_UsuarioCrea, Nullable<System.DateTime> tptal_FechaCrea)
+        {
+            var prog_IdParameter = prog_Id.HasValue ?
+                new ObjectParameter("prog_Id", prog_Id) :
+                new ObjectParameter("prog_Id", typeof(int));
+    
+            var tptal_TituloParameter = tptal_Titulo != null ?
+                new ObjectParameter("tptal_Titulo", tptal_Titulo) :
+                new ObjectParameter("tptal_Titulo", typeof(string));
+    
+            var tptal_DescripcionParameter = tptal_Descripcion != null ?
+                new ObjectParameter("tptal_Descripcion", tptal_Descripcion) :
+                new ObjectParameter("tptal_Descripcion", typeof(string));
+    
+            var tptal_VideoParameter = tptal_Video != null ?
+                new ObjectParameter("tptal_Video", tptal_Video) :
+                new ObjectParameter("tptal_Video", typeof(string));
+    
+            var tptal_MaterialDidactico1Parameter = tptal_MaterialDidactico1 != null ?
+                new ObjectParameter("tptal_MaterialDidactico1", tptal_MaterialDidactico1) :
+                new ObjectParameter("tptal_MaterialDidactico1", typeof(string));
+    
+            var tptal_MaterialDidactico2Parameter = tptal_MaterialDidactico2 != null ?
+                new ObjectParameter("tptal_MaterialDidactico2", tptal_MaterialDidactico2) :
+                new ObjectParameter("tptal_MaterialDidactico2", typeof(string));
+    
+            var even_IdParameter = even_Id.HasValue ?
+                new ObjectParameter("even_Id", even_Id) :
+                new ObjectParameter("even_Id", typeof(int));
+    
+            var evac_IdParameter = evac_Id.HasValue ?
+                new ObjectParameter("evac_Id", evac_Id) :
+                new ObjectParameter("evac_Id", typeof(int));
+    
+            var tptal_Es_ActivoParameter = tptal_Es_Activo.HasValue ?
+                new ObjectParameter("tptal_Es_Activo", tptal_Es_Activo) :
+                new ObjectParameter("tptal_Es_Activo", typeof(int));
+    
+            var tptal_EstadoEnLineaParameter = tptal_EstadoEnLinea.HasValue ?
+                new ObjectParameter("tptal_EstadoEnLinea", tptal_EstadoEnLinea) :
+                new ObjectParameter("tptal_EstadoEnLinea", typeof(bool));
+    
+            var tptal_UsuarioCreaParameter = tptal_UsuarioCrea.HasValue ?
+                new ObjectParameter("tptal_UsuarioCrea", tptal_UsuarioCrea) :
+                new ObjectParameter("tptal_UsuarioCrea", typeof(int));
+    
+            var tptal_FechaCreaParameter = tptal_FechaCrea.HasValue ?
+                new ObjectParameter("tptal_FechaCrea", tptal_FechaCrea) :
+                new ObjectParameter("tptal_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Ctl_tbTipoTaller_tbBeneficiario_Insert", prog_IdParameter, tptal_TituloParameter, tptal_DescripcionParameter, tptal_VideoParameter, tptal_MaterialDidactico1Parameter, tptal_MaterialDidactico2Parameter, even_IdParameter, evac_IdParameter, tptal_Es_ActivoParameter, tptal_EstadoEnLineaParameter, tptal_UsuarioCreaParameter, tptal_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> UDP_Ctl_tbTipoTaller_tbBeneficiario_Update(Nullable<int> tptal_Id, Nullable<int> prog_Id, string tptal_Titulo, string tptal_Descripcion, string tptal_Video, string tptal_MaterialDidactico1, string tptal_MaterialDidactico2, Nullable<int> even_Id, Nullable<int> evac_Id, Nullable<bool> tptal_EstadoEnLinea, Nullable<int> tptal_UsuarioModifica, Nullable<System.DateTime> tptal_FechaModifica)
+        {
+            var tptal_IdParameter = tptal_Id.HasValue ?
+                new ObjectParameter("tptal_Id", tptal_Id) :
+                new ObjectParameter("tptal_Id", typeof(int));
+    
+            var prog_IdParameter = prog_Id.HasValue ?
+                new ObjectParameter("prog_Id", prog_Id) :
+                new ObjectParameter("prog_Id", typeof(int));
+    
+            var tptal_TituloParameter = tptal_Titulo != null ?
+                new ObjectParameter("tptal_Titulo", tptal_Titulo) :
+                new ObjectParameter("tptal_Titulo", typeof(string));
+    
+            var tptal_DescripcionParameter = tptal_Descripcion != null ?
+                new ObjectParameter("tptal_Descripcion", tptal_Descripcion) :
+                new ObjectParameter("tptal_Descripcion", typeof(string));
+    
+            var tptal_VideoParameter = tptal_Video != null ?
+                new ObjectParameter("tptal_Video", tptal_Video) :
+                new ObjectParameter("tptal_Video", typeof(string));
+    
+            var tptal_MaterialDidactico1Parameter = tptal_MaterialDidactico1 != null ?
+                new ObjectParameter("tptal_MaterialDidactico1", tptal_MaterialDidactico1) :
+                new ObjectParameter("tptal_MaterialDidactico1", typeof(string));
+    
+            var tptal_MaterialDidactico2Parameter = tptal_MaterialDidactico2 != null ?
+                new ObjectParameter("tptal_MaterialDidactico2", tptal_MaterialDidactico2) :
+                new ObjectParameter("tptal_MaterialDidactico2", typeof(string));
+    
+            var even_IdParameter = even_Id.HasValue ?
+                new ObjectParameter("even_Id", even_Id) :
+                new ObjectParameter("even_Id", typeof(int));
+    
+            var evac_IdParameter = evac_Id.HasValue ?
+                new ObjectParameter("evac_Id", evac_Id) :
+                new ObjectParameter("evac_Id", typeof(int));
+    
+            var tptal_EstadoEnLineaParameter = tptal_EstadoEnLinea.HasValue ?
+                new ObjectParameter("tptal_EstadoEnLinea", tptal_EstadoEnLinea) :
+                new ObjectParameter("tptal_EstadoEnLinea", typeof(bool));
+    
+            var tptal_UsuarioModificaParameter = tptal_UsuarioModifica.HasValue ?
+                new ObjectParameter("tptal_UsuarioModifica", tptal_UsuarioModifica) :
+                new ObjectParameter("tptal_UsuarioModifica", typeof(int));
+    
+            var tptal_FechaModificaParameter = tptal_FechaModifica.HasValue ?
+                new ObjectParameter("tptal_FechaModifica", tptal_FechaModifica) :
+                new ObjectParameter("tptal_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UDP_Ctl_tbTipoTaller_tbBeneficiario_Update", tptal_IdParameter, prog_IdParameter, tptal_TituloParameter, tptal_DescripcionParameter, tptal_VideoParameter, tptal_MaterialDidactico1Parameter, tptal_MaterialDidactico2Parameter, even_IdParameter, evac_IdParameter, tptal_EstadoEnLineaParameter, tptal_UsuarioModificaParameter, tptal_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Gral_tbBeneficiarios_Lin_tbUsuarios_Rechazar(Nullable<int> ben_Id, Nullable<int> usul_Id, string usul_Status)
+        {
+            var ben_IdParameter = ben_Id.HasValue ?
+                new ObjectParameter("ben_Id", ben_Id) :
+                new ObjectParameter("ben_Id", typeof(int));
+    
+            var usul_IdParameter = usul_Id.HasValue ?
+                new ObjectParameter("usul_Id", usul_Id) :
+                new ObjectParameter("usul_Id", typeof(int));
+    
+            var usul_StatusParameter = usul_Status != null ?
+                new ObjectParameter("usul_Status", usul_Status) :
+                new ObjectParameter("usul_Status", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Gral_tbBeneficiarios_Lin_tbUsuarios_Rechazar", ben_IdParameter, usul_IdParameter, usul_StatusParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Gral_tbBeneficiarios_tbUsuariosLinea_Insert(string ben_Identificacion, string ben_Nombres, string ben_Apellidos, string ben_Telefono, string ben_CorreoElectronico, string mun_Id, string ben_Direccion, string ben_Sexo, Nullable<System.DateTime> ben_FechaNacimiento, string ben_NivelAcademico, Nullable<bool> ben_Amigrado, Nullable<bool> ben_TieneIntenciones, Nullable<bool> ben_ExMiembroPandilla, Nullable<bool> ben_EsVoluntario, Nullable<int> cda_Id, string ben_TipoBeneficiario, Nullable<int> prog_Id, Nullable<int> ben_UsuarioCrea, Nullable<System.DateTime> ben_FechaCrea, string usul_Identidad, string usul_Nombres, string usul_Apellidos, string usul_CorreoElectronico, string usul_Password, Nullable<short> usul_Estado, Nullable<int> usul_UsuarioCrea, Nullable<System.DateTime> usul_FechaCrea)
+        {
+            var ben_IdentificacionParameter = ben_Identificacion != null ?
+                new ObjectParameter("ben_Identificacion", ben_Identificacion) :
+                new ObjectParameter("ben_Identificacion", typeof(string));
+    
+            var ben_NombresParameter = ben_Nombres != null ?
+                new ObjectParameter("ben_Nombres", ben_Nombres) :
+                new ObjectParameter("ben_Nombres", typeof(string));
+    
+            var ben_ApellidosParameter = ben_Apellidos != null ?
+                new ObjectParameter("ben_Apellidos", ben_Apellidos) :
+                new ObjectParameter("ben_Apellidos", typeof(string));
+    
+            var ben_TelefonoParameter = ben_Telefono != null ?
+                new ObjectParameter("ben_Telefono", ben_Telefono) :
+                new ObjectParameter("ben_Telefono", typeof(string));
+    
+            var ben_CorreoElectronicoParameter = ben_CorreoElectronico != null ?
+                new ObjectParameter("ben_CorreoElectronico", ben_CorreoElectronico) :
+                new ObjectParameter("ben_CorreoElectronico", typeof(string));
+    
+            var mun_IdParameter = mun_Id != null ?
+                new ObjectParameter("mun_Id", mun_Id) :
+                new ObjectParameter("mun_Id", typeof(string));
+    
+            var ben_DireccionParameter = ben_Direccion != null ?
+                new ObjectParameter("ben_Direccion", ben_Direccion) :
+                new ObjectParameter("ben_Direccion", typeof(string));
+    
+            var ben_SexoParameter = ben_Sexo != null ?
+                new ObjectParameter("ben_Sexo", ben_Sexo) :
+                new ObjectParameter("ben_Sexo", typeof(string));
+    
+            var ben_FechaNacimientoParameter = ben_FechaNacimiento.HasValue ?
+                new ObjectParameter("ben_FechaNacimiento", ben_FechaNacimiento) :
+                new ObjectParameter("ben_FechaNacimiento", typeof(System.DateTime));
+    
+            var ben_NivelAcademicoParameter = ben_NivelAcademico != null ?
+                new ObjectParameter("ben_NivelAcademico", ben_NivelAcademico) :
+                new ObjectParameter("ben_NivelAcademico", typeof(string));
+    
+            var ben_AmigradoParameter = ben_Amigrado.HasValue ?
+                new ObjectParameter("ben_Amigrado", ben_Amigrado) :
+                new ObjectParameter("ben_Amigrado", typeof(bool));
+    
+            var ben_TieneIntencionesParameter = ben_TieneIntenciones.HasValue ?
+                new ObjectParameter("ben_TieneIntenciones", ben_TieneIntenciones) :
+                new ObjectParameter("ben_TieneIntenciones", typeof(bool));
+    
+            var ben_ExMiembroPandillaParameter = ben_ExMiembroPandilla.HasValue ?
+                new ObjectParameter("ben_ExMiembroPandilla", ben_ExMiembroPandilla) :
+                new ObjectParameter("ben_ExMiembroPandilla", typeof(bool));
+    
+            var ben_EsVoluntarioParameter = ben_EsVoluntario.HasValue ?
+                new ObjectParameter("ben_EsVoluntario", ben_EsVoluntario) :
+                new ObjectParameter("ben_EsVoluntario", typeof(bool));
+    
+            var cda_IdParameter = cda_Id.HasValue ?
+                new ObjectParameter("cda_Id", cda_Id) :
+                new ObjectParameter("cda_Id", typeof(int));
+    
+            var ben_TipoBeneficiarioParameter = ben_TipoBeneficiario != null ?
+                new ObjectParameter("ben_TipoBeneficiario", ben_TipoBeneficiario) :
+                new ObjectParameter("ben_TipoBeneficiario", typeof(string));
+    
+            var prog_IdParameter = prog_Id.HasValue ?
+                new ObjectParameter("prog_Id", prog_Id) :
+                new ObjectParameter("prog_Id", typeof(int));
+    
+            var ben_UsuarioCreaParameter = ben_UsuarioCrea.HasValue ?
+                new ObjectParameter("ben_UsuarioCrea", ben_UsuarioCrea) :
+                new ObjectParameter("ben_UsuarioCrea", typeof(int));
+    
+            var ben_FechaCreaParameter = ben_FechaCrea.HasValue ?
+                new ObjectParameter("ben_FechaCrea", ben_FechaCrea) :
+                new ObjectParameter("ben_FechaCrea", typeof(System.DateTime));
+    
+            var usul_IdentidadParameter = usul_Identidad != null ?
+                new ObjectParameter("usul_Identidad", usul_Identidad) :
+                new ObjectParameter("usul_Identidad", typeof(string));
+    
+            var usul_NombresParameter = usul_Nombres != null ?
+                new ObjectParameter("usul_Nombres", usul_Nombres) :
+                new ObjectParameter("usul_Nombres", typeof(string));
+    
+            var usul_ApellidosParameter = usul_Apellidos != null ?
+                new ObjectParameter("usul_Apellidos", usul_Apellidos) :
+                new ObjectParameter("usul_Apellidos", typeof(string));
+    
+            var usul_CorreoElectronicoParameter = usul_CorreoElectronico != null ?
+                new ObjectParameter("usul_CorreoElectronico", usul_CorreoElectronico) :
+                new ObjectParameter("usul_CorreoElectronico", typeof(string));
+    
+            var usul_PasswordParameter = usul_Password != null ?
+                new ObjectParameter("usul_Password", usul_Password) :
+                new ObjectParameter("usul_Password", typeof(string));
+    
+            var usul_EstadoParameter = usul_Estado.HasValue ?
+                new ObjectParameter("usul_Estado", usul_Estado) :
+                new ObjectParameter("usul_Estado", typeof(short));
+    
+            var usul_UsuarioCreaParameter = usul_UsuarioCrea.HasValue ?
+                new ObjectParameter("usul_UsuarioCrea", usul_UsuarioCrea) :
+                new ObjectParameter("usul_UsuarioCrea", typeof(int));
+    
+            var usul_FechaCreaParameter = usul_FechaCrea.HasValue ?
+                new ObjectParameter("usul_FechaCrea", usul_FechaCrea) :
+                new ObjectParameter("usul_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Gral_tbBeneficiarios_tbUsuariosLinea_Insert", ben_IdentificacionParameter, ben_NombresParameter, ben_ApellidosParameter, ben_TelefonoParameter, ben_CorreoElectronicoParameter, mun_IdParameter, ben_DireccionParameter, ben_SexoParameter, ben_FechaNacimientoParameter, ben_NivelAcademicoParameter, ben_AmigradoParameter, ben_TieneIntencionesParameter, ben_ExMiembroPandillaParameter, ben_EsVoluntarioParameter, cda_IdParameter, ben_TipoBeneficiarioParameter, prog_IdParameter, ben_UsuarioCreaParameter, ben_FechaCreaParameter, usul_IdentidadParameter, usul_NombresParameter, usul_ApellidosParameter, usul_CorreoElectronicoParameter, usul_PasswordParameter, usul_EstadoParameter, usul_UsuarioCreaParameter, usul_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Lin_tb_Evaluaciones_Delete(Nullable<int> evac_Id, Nullable<bool> evac_Estado, Nullable<int> evac_UsuarioModifica, Nullable<System.DateTime> evac_FechaModifica)
+        {
+            var evac_IdParameter = evac_Id.HasValue ?
+                new ObjectParameter("evac_Id", evac_Id) :
+                new ObjectParameter("evac_Id", typeof(int));
+    
+            var evac_EstadoParameter = evac_Estado.HasValue ?
+                new ObjectParameter("evac_Estado", evac_Estado) :
+                new ObjectParameter("evac_Estado", typeof(bool));
+    
+            var evac_UsuarioModificaParameter = evac_UsuarioModifica.HasValue ?
+                new ObjectParameter("evac_UsuarioModifica", evac_UsuarioModifica) :
+                new ObjectParameter("evac_UsuarioModifica", typeof(int));
+    
+            var evac_FechaModificaParameter = evac_FechaModifica.HasValue ?
+                new ObjectParameter("evac_FechaModifica", evac_FechaModifica) :
+                new ObjectParameter("evac_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Lin_tb_Evaluaciones_Delete", evac_IdParameter, evac_EstadoParameter, evac_UsuarioModificaParameter, evac_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Lin_tb_Evaluaciones_Insert(string evac_Descripcion, string evac_TipoEvaluacion, Nullable<bool> evac_Estado, Nullable<int> evac_UsuarioCrea, Nullable<System.DateTime> evac_FechaCrea)
+        {
+            var evac_DescripcionParameter = evac_Descripcion != null ?
+                new ObjectParameter("evac_Descripcion", evac_Descripcion) :
+                new ObjectParameter("evac_Descripcion", typeof(string));
+    
+            var evac_TipoEvaluacionParameter = evac_TipoEvaluacion != null ?
+                new ObjectParameter("evac_TipoEvaluacion", evac_TipoEvaluacion) :
+                new ObjectParameter("evac_TipoEvaluacion", typeof(string));
+    
+            var evac_EstadoParameter = evac_Estado.HasValue ?
+                new ObjectParameter("evac_Estado", evac_Estado) :
+                new ObjectParameter("evac_Estado", typeof(bool));
+    
+            var evac_UsuarioCreaParameter = evac_UsuarioCrea.HasValue ?
+                new ObjectParameter("evac_UsuarioCrea", evac_UsuarioCrea) :
+                new ObjectParameter("evac_UsuarioCrea", typeof(int));
+    
+            var evac_FechaCreaParameter = evac_FechaCrea.HasValue ?
+                new ObjectParameter("evac_FechaCrea", evac_FechaCrea) :
+                new ObjectParameter("evac_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Lin_tb_Evaluaciones_Insert", evac_DescripcionParameter, evac_TipoEvaluacionParameter, evac_EstadoParameter, evac_UsuarioCreaParameter, evac_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Lin_tb_Evaluaciones_Update(Nullable<int> evac_Id, string evac_Descripcion, string evac_TipoEvaluacion, Nullable<int> evac_UsuarioModifica, Nullable<System.DateTime> evac_FechaModifica)
+        {
+            var evac_IdParameter = evac_Id.HasValue ?
+                new ObjectParameter("evac_Id", evac_Id) :
+                new ObjectParameter("evac_Id", typeof(int));
+    
+            var evac_DescripcionParameter = evac_Descripcion != null ?
+                new ObjectParameter("evac_Descripcion", evac_Descripcion) :
+                new ObjectParameter("evac_Descripcion", typeof(string));
+    
+            var evac_TipoEvaluacionParameter = evac_TipoEvaluacion != null ?
+                new ObjectParameter("evac_TipoEvaluacion", evac_TipoEvaluacion) :
+                new ObjectParameter("evac_TipoEvaluacion", typeof(string));
+    
+            var evac_UsuarioModificaParameter = evac_UsuarioModifica.HasValue ?
+                new ObjectParameter("evac_UsuarioModifica", evac_UsuarioModifica) :
+                new ObjectParameter("evac_UsuarioModifica", typeof(int));
+    
+            var evac_FechaModificaParameter = evac_FechaModifica.HasValue ?
+                new ObjectParameter("evac_FechaModifica", evac_FechaModifica) :
+                new ObjectParameter("evac_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Lin_tb_Evaluaciones_Update", evac_IdParameter, evac_DescripcionParameter, evac_TipoEvaluacionParameter, evac_UsuarioModificaParameter, evac_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Lin_tb_Eventos_Insert(string even_Descripcion, Nullable<int> even_UsuarioCrea, Nullable<System.DateTime> even_FechaCrea)
+        {
+            var even_DescripcionParameter = even_Descripcion != null ?
+                new ObjectParameter("even_Descripcion", even_Descripcion) :
+                new ObjectParameter("even_Descripcion", typeof(string));
+    
+            var even_UsuarioCreaParameter = even_UsuarioCrea.HasValue ?
+                new ObjectParameter("even_UsuarioCrea", even_UsuarioCrea) :
+                new ObjectParameter("even_UsuarioCrea", typeof(int));
+    
+            var even_FechaCreaParameter = even_FechaCrea.HasValue ?
+                new ObjectParameter("even_FechaCrea", even_FechaCrea) :
+                new ObjectParameter("even_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Lin_tb_Eventos_Insert", even_DescripcionParameter, even_UsuarioCreaParameter, even_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Lin_tb_Preguntas_Delete(Nullable<int> preg_Id, Nullable<bool> preg_Estado, Nullable<int> preg_UsuarioModifica, Nullable<System.DateTime> preg_FechaModifica)
+        {
+            var preg_IdParameter = preg_Id.HasValue ?
+                new ObjectParameter("preg_Id", preg_Id) :
+                new ObjectParameter("preg_Id", typeof(int));
+    
+            var preg_EstadoParameter = preg_Estado.HasValue ?
+                new ObjectParameter("preg_Estado", preg_Estado) :
+                new ObjectParameter("preg_Estado", typeof(bool));
+    
+            var preg_UsuarioModificaParameter = preg_UsuarioModifica.HasValue ?
+                new ObjectParameter("preg_UsuarioModifica", preg_UsuarioModifica) :
+                new ObjectParameter("preg_UsuarioModifica", typeof(int));
+    
+            var preg_FechaModificaParameter = preg_FechaModifica.HasValue ?
+                new ObjectParameter("preg_FechaModifica", preg_FechaModifica) :
+                new ObjectParameter("preg_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Lin_tb_Preguntas_Delete", preg_IdParameter, preg_EstadoParameter, preg_UsuarioModificaParameter, preg_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Lin_tb_Preguntas_Insert(string preg_Descripcion, Nullable<int> evac_Id, Nullable<bool> preg_Estado, Nullable<int> preg_UsuarioCrea, Nullable<System.DateTime> preg_FechaCrea)
+        {
+            var preg_DescripcionParameter = preg_Descripcion != null ?
+                new ObjectParameter("preg_Descripcion", preg_Descripcion) :
+                new ObjectParameter("preg_Descripcion", typeof(string));
+    
+            var evac_IdParameter = evac_Id.HasValue ?
+                new ObjectParameter("evac_Id", evac_Id) :
+                new ObjectParameter("evac_Id", typeof(int));
+    
+            var preg_EstadoParameter = preg_Estado.HasValue ?
+                new ObjectParameter("preg_Estado", preg_Estado) :
+                new ObjectParameter("preg_Estado", typeof(bool));
+    
+            var preg_UsuarioCreaParameter = preg_UsuarioCrea.HasValue ?
+                new ObjectParameter("preg_UsuarioCrea", preg_UsuarioCrea) :
+                new ObjectParameter("preg_UsuarioCrea", typeof(int));
+    
+            var preg_FechaCreaParameter = preg_FechaCrea.HasValue ?
+                new ObjectParameter("preg_FechaCrea", preg_FechaCrea) :
+                new ObjectParameter("preg_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Lin_tb_Preguntas_Insert", preg_DescripcionParameter, evac_IdParameter, preg_EstadoParameter, preg_UsuarioCreaParameter, preg_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Lin_tb_Preguntas_Update(Nullable<int> preg_Id, string preg_Descripcion, Nullable<bool> preg_Estado, Nullable<int> preg_UsuarioModifica, Nullable<System.DateTime> preg_FechaModifica)
+        {
+            var preg_IdParameter = preg_Id.HasValue ?
+                new ObjectParameter("preg_Id", preg_Id) :
+                new ObjectParameter("preg_Id", typeof(int));
+    
+            var preg_DescripcionParameter = preg_Descripcion != null ?
+                new ObjectParameter("preg_Descripcion", preg_Descripcion) :
+                new ObjectParameter("preg_Descripcion", typeof(string));
+    
+            var preg_EstadoParameter = preg_Estado.HasValue ?
+                new ObjectParameter("preg_Estado", preg_Estado) :
+                new ObjectParameter("preg_Estado", typeof(bool));
+    
+            var preg_UsuarioModificaParameter = preg_UsuarioModifica.HasValue ?
+                new ObjectParameter("preg_UsuarioModifica", preg_UsuarioModifica) :
+                new ObjectParameter("preg_UsuarioModifica", typeof(int));
+    
+            var preg_FechaModificaParameter = preg_FechaModifica.HasValue ?
+                new ObjectParameter("preg_FechaModifica", preg_FechaModifica) :
+                new ObjectParameter("preg_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Lin_tb_Preguntas_Update", preg_IdParameter, preg_DescripcionParameter, preg_EstadoParameter, preg_UsuarioModificaParameter, preg_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Lin_tb_Respuestas_Delete(Nullable<int> resp_Id, Nullable<bool> resp_Estado, Nullable<int> resp_UsuarioModifica, Nullable<System.DateTime> resp_FechaModifica)
+        {
+            var resp_IdParameter = resp_Id.HasValue ?
+                new ObjectParameter("resp_Id", resp_Id) :
+                new ObjectParameter("resp_Id", typeof(int));
+    
+            var resp_EstadoParameter = resp_Estado.HasValue ?
+                new ObjectParameter("resp_Estado", resp_Estado) :
+                new ObjectParameter("resp_Estado", typeof(bool));
+    
+            var resp_UsuarioModificaParameter = resp_UsuarioModifica.HasValue ?
+                new ObjectParameter("resp_UsuarioModifica", resp_UsuarioModifica) :
+                new ObjectParameter("resp_UsuarioModifica", typeof(int));
+    
+            var resp_FechaModificaParameter = resp_FechaModifica.HasValue ?
+                new ObjectParameter("resp_FechaModifica", resp_FechaModifica) :
+                new ObjectParameter("resp_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Lin_tb_Respuestas_Delete", resp_IdParameter, resp_EstadoParameter, resp_UsuarioModificaParameter, resp_FechaModificaParameter);
+        }
+    
+        public virtual int UDP_Lin_tb_Respuestas_Insert(string resp_Descripcion, Nullable<bool> resp_Estado, Nullable<int> preg_Id, Nullable<int> resp_UsuarioCrea, Nullable<System.DateTime> resp_FechaCrea)
+        {
+            var resp_DescripcionParameter = resp_Descripcion != null ?
+                new ObjectParameter("resp_Descripcion", resp_Descripcion) :
+                new ObjectParameter("resp_Descripcion", typeof(string));
+    
+            var resp_EstadoParameter = resp_Estado.HasValue ?
+                new ObjectParameter("resp_Estado", resp_Estado) :
+                new ObjectParameter("resp_Estado", typeof(bool));
+    
+            var preg_IdParameter = preg_Id.HasValue ?
+                new ObjectParameter("preg_Id", preg_Id) :
+                new ObjectParameter("preg_Id", typeof(int));
+    
+            var resp_UsuarioCreaParameter = resp_UsuarioCrea.HasValue ?
+                new ObjectParameter("resp_UsuarioCrea", resp_UsuarioCrea) :
+                new ObjectParameter("resp_UsuarioCrea", typeof(int));
+    
+            var resp_FechaCreaParameter = resp_FechaCrea.HasValue ?
+                new ObjectParameter("resp_FechaCrea", resp_FechaCrea) :
+                new ObjectParameter("resp_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_Lin_tb_Respuestas_Insert", resp_DescripcionParameter, resp_EstadoParameter, preg_IdParameter, resp_UsuarioCreaParameter, resp_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Lin_tb_Respuestas_Update(Nullable<int> resp_Id, string resp_Descripcion, Nullable<int> resp_UsuarioModifica, Nullable<System.DateTime> resp_FechaModifica)
+        {
+            var resp_IdParameter = resp_Id.HasValue ?
+                new ObjectParameter("resp_Id", resp_Id) :
+                new ObjectParameter("resp_Id", typeof(int));
+    
+            var resp_DescripcionParameter = resp_Descripcion != null ?
+                new ObjectParameter("resp_Descripcion", resp_Descripcion) :
+                new ObjectParameter("resp_Descripcion", typeof(string));
+    
+            var resp_UsuarioModificaParameter = resp_UsuarioModifica.HasValue ?
+                new ObjectParameter("resp_UsuarioModifica", resp_UsuarioModifica) :
+                new ObjectParameter("resp_UsuarioModifica", typeof(int));
+    
+            var resp_FechaModificaParameter = resp_FechaModifica.HasValue ?
+                new ObjectParameter("resp_FechaModifica", resp_FechaModifica) :
+                new ObjectParameter("resp_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Lin_tb_Respuestas_Update", resp_IdParameter, resp_DescripcionParameter, resp_UsuarioModificaParameter, resp_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Lin_tbEventos_Delete(Nullable<int> even_Id, Nullable<bool> even_Estado, Nullable<int> even_UsuarioModifica, Nullable<System.DateTime> even_FechaModifica)
+        {
+            var even_IdParameter = even_Id.HasValue ?
+                new ObjectParameter("even_Id", even_Id) :
+                new ObjectParameter("even_Id", typeof(int));
+    
+            var even_EstadoParameter = even_Estado.HasValue ?
+                new ObjectParameter("even_Estado", even_Estado) :
+                new ObjectParameter("even_Estado", typeof(bool));
+    
+            var even_UsuarioModificaParameter = even_UsuarioModifica.HasValue ?
+                new ObjectParameter("even_UsuarioModifica", even_UsuarioModifica) :
+                new ObjectParameter("even_UsuarioModifica", typeof(int));
+    
+            var even_FechaModificaParameter = even_FechaModifica.HasValue ?
+                new ObjectParameter("even_FechaModifica", even_FechaModifica) :
+                new ObjectParameter("even_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Lin_tbEventos_Delete", even_IdParameter, even_EstadoParameter, even_UsuarioModificaParameter, even_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> UDP_Lin_tbEventos_Update(Nullable<int> even_Id, string even_Descripcion, Nullable<int> even_UsuarioModifica, Nullable<System.DateTime> even_FechaModifica)
+        {
+            var even_IdParameter = even_Id.HasValue ?
+                new ObjectParameter("even_Id", even_Id) :
+                new ObjectParameter("even_Id", typeof(int));
+    
+            var even_DescripcionParameter = even_Descripcion != null ?
+                new ObjectParameter("even_Descripcion", even_Descripcion) :
+                new ObjectParameter("even_Descripcion", typeof(string));
+    
+            var even_UsuarioModificaParameter = even_UsuarioModifica.HasValue ?
+                new ObjectParameter("even_UsuarioModifica", even_UsuarioModifica) :
+                new ObjectParameter("even_UsuarioModifica", typeof(int));
+    
+            var even_FechaModificaParameter = even_FechaModifica.HasValue ?
+                new ObjectParameter("even_FechaModifica", even_FechaModifica) :
+                new ObjectParameter("even_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UDP_Lin_tbEventos_Update", even_IdParameter, even_DescripcionParameter, even_UsuarioModificaParameter, even_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> UDP_Lin_tbUsuarios_Aceptar(Nullable<int> usul_Id, Nullable<bool> usul_Estado, string usul_Status)
+        {
+            var usul_IdParameter = usul_Id.HasValue ?
+                new ObjectParameter("usul_Id", usul_Id) :
+                new ObjectParameter("usul_Id", typeof(int));
+    
+            var usul_EstadoParameter = usul_Estado.HasValue ?
+                new ObjectParameter("usul_Estado", usul_Estado) :
+                new ObjectParameter("usul_Estado", typeof(bool));
+    
+            var usul_StatusParameter = usul_Status != null ?
+                new ObjectParameter("usul_Status", usul_Status) :
+                new ObjectParameter("usul_Status", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UDP_Lin_tbUsuarios_Aceptar", usul_IdParameter, usul_EstadoParameter, usul_StatusParameter);
+        }
     }
 }

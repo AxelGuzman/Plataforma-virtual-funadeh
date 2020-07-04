@@ -242,6 +242,9 @@
     <Compile Include="Models\tbEmpresa.cs">
       <DependentUpon>PlataformaVirtual.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbEvaluaciones.cs">
+      <DependentUpon>PlataformaVirtual.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbEventos.cs">
       <DependentUpon>PlataformaVirtual.tt</DependentUpon>
     </Compile>
@@ -251,7 +254,13 @@
     <Compile Include="Models\tbPermisos.cs">
       <DependentUpon>PlataformaVirtual.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbPreguntas.cs">
+      <DependentUpon>PlataformaVirtual.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbPrograma.cs">
+      <DependentUpon>PlataformaVirtual.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbRespuestas.cs">
       <DependentUpon>PlataformaVirtual.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbRoles.cs">
@@ -276,6 +285,15 @@
       <DependentUpon>PlataformaVirtual.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbUsuariosLinea.cs">
+      <DependentUpon>PlataformaVirtual.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Acce_Login_Result.cs">
+      <DependentUpon>PlataformaVirtual.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Gral_BusquedaBeneficiario_Result.cs">
+      <DependentUpon>PlataformaVirtual.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Gral_DiplomaCapacitacion_Result.cs">
       <DependentUpon>PlataformaVirtual.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1337,6 +1355,10 @@
     <Content Include="Models\PlataformaVirtual.edmx.diagram">
       <DependentUpon>PlataformaVirtual.edmx</DependentUpon>
     </Content>
+    <Content Include="CodeTemplates\MvcView\_Create.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\_Delete.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\_Detalles.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\_Edit.cs.t4" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
@@ -1869,13 +1891,19 @@
     <Content Include="Views\Solicitudes\Cursos.cshtml" />
     <Content Include="Views\Registros\Registros.cshtml" />
     <Content Include="Views\CrearCursos\CrearCursos.cshtml" />
-    <Content Include="Views\Eventos\Eventos.cshtml" />
     <Content Include="Views\Asignacion\Asignacion.cshtml" />
     <Content Include="Views\tbMunicipios\Create.cshtml" />
     <Content Include="Views\tbMunicipios\Delete.cshtml" />
     <Content Include="Views\tbMunicipios\Details.cshtml" />
     <Content Include="Views\tbMunicipios\Edit.cshtml" />
     <Content Include="Views\tbMunicipios\Index.cshtml" />
+    <Content Include="Views\Eventos\Create.cshtml" />
+    <Content Include="Views\Eventos\Delete.cshtml" />
+    <Content Include="Views\Eventos\Details.cshtml" />
+    <Content Include="Views\Eventos\Edit.cshtml" />
+    <Content Include="Views\Eventos\Index.cshtml" />
+    <Content Include="Views\Eventos\List.cshtml" />
+    <Content Include="Views\Eventos\_Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\CSSAnimations\" />
