@@ -195,6 +195,7 @@
     </Compile>
     <Compile Include="Helpers\HMTLHelperExtensions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\cEventos.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PlataformaVirtual.Context.cs">
@@ -414,6 +415,8 @@
     <Content Include="Content\plugins\ionRangeSlider\ion.rangeSlider.skinFlat.css" />
     <Content Include="Content\plugins\ionRangeSlider\ion.rangeSlider.skinNice.css" />
     <Content Include="Content\plugins\ionRangeSlider\ion.rangeSlider.skinSimple.css" />
+    <Content Include="Content\plugins\izitoast\iziToast.css" />
+    <Content Include="Content\plugins\izitoast\iziToast.min.css" />
     <Content Include="Content\plugins\jasny\jasny-bootstrap.min.css" />
     <Content Include="Content\plugins\jqGrid\ui.jqgrid.css" />
     <Content Include="Content\plugins\jQueryUI\images\animated-overlay.gif" />
@@ -1341,6 +1344,9 @@
       <DependentUpon>PlataformaVirtual.edmx</DependentUpon>
       <LastGenOutput>PlataformaVirtual.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\app\General\Eventos.js" />
+    <Content Include="Scripts\app\General\general.js" />
+    <Content Include="Scripts\app\General\SerializeDate.js" />
     <Content Include="Scripts\app\inspinia.js" />
     <Content Include="Scripts\app\skin.config.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1579,6 +1585,7 @@
     <Content Include="Scripts\plugins\datamaps\datamaps.all.min.js" />
     <Content Include="Scripts\plugins\datapicker\bootstrap-datepicker.js" />
     <Content Include="Scripts\plugins\dataTables\datatables.min.js" />
+    <Content Include="Scripts\plugins\dataTables\DatatablesConfigurations.js" />
     <Content Include="Scripts\plugins\daterangepicker\daterangepicker.js" />
     <Content Include="Scripts\plugins\diff_match_patch\javascript\diff_match_patch.js" />
     <Content Include="Scripts\plugins\diff_match_patch\README.txt" />
@@ -1609,6 +1616,8 @@
     <Content Include="Scripts\plugins\iCheck\icheck.min.js" />
     <Content Include="Scripts\plugins\idle-timer\idle-timer.min.js" />
     <Content Include="Scripts\plugins\ionRangeSlider\ion.rangeSlider.min.js" />
+    <Content Include="Scripts\plugins\iziToast\iziToast.js" />
+    <Content Include="Scripts\plugins\iziToast\iziToast.min.js" />
     <Content Include="Scripts\plugins\jasny\jasny-bootstrap.min.js" />
     <Content Include="Scripts\plugins\jeditable\jquery.jeditable.js" />
     <Content Include="Scripts\plugins\jqGrid\i18n\grid.locale-ar.js" />
@@ -1897,13 +1906,11 @@
     <Content Include="Views\tbMunicipios\Details.cshtml" />
     <Content Include="Views\tbMunicipios\Edit.cshtml" />
     <Content Include="Views\tbMunicipios\Index.cshtml" />
-    <Content Include="Views\Eventos\Create.cshtml" />
-    <Content Include="Views\Eventos\Delete.cshtml" />
-    <Content Include="Views\Eventos\Details.cshtml" />
-    <Content Include="Views\Eventos\Edit.cshtml" />
-    <Content Include="Views\Eventos\Index.cshtml" />
-    <Content Include="Views\Eventos\List.cshtml" />
     <Content Include="Views\Eventos\_Create.cshtml" />
+    <Content Include="Views\Eventos\_Edit.cshtml" />
+    <Content Include="Views\Eventos\_Detalles.cshtml" />
+    <Content Include="Views\Eventos\Index.cshtml" />
+    <Content Include="Views\Eventos\_Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\CSSAnimations\" />

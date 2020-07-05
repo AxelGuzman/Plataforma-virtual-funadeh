@@ -14,36 +14,45 @@ namespace FUNADEH_PLATAFORMAVIRTUAL.Controllers
     {
         private GeneracionIngresosEntities db = new GeneracionIngresosEntities();
 
-        // GET: /Eventos/
 
-        public ActionResult List()
-        {
-            var tbeventos = db.tbEventos.Include(t => t.tbUsuarios).Include(t => t.tbUsuarios1);
-            return View(tbeventos.ToList());
-        }
         public ActionResult Index()
         {
-            var tbeventos = db.tbEventos.Include(t => t.tbUsuarios).Include(t => t.tbUsuarios1);
-            return View(tbeventos.ToList());
-        }
+            tbEventos tbeventos = new tbEventos();
+            return View(tbeventos);
 
-        // GET: /Eventos/Details/5
-        public ActionResult Details(int? id)
+        }
+    
+
+
+    [HttpPost]
+    public JsonResult llenarTabla()
+    {
+        try
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tbEventos tbEventos = db.tbEventos.Find(id);
-            if (tbEventos == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbEventos);
-        }
+            db = new GeneracionIngresosEntities();
 
-        // GET: /Eventos/Create
-        public ActionResult Create()
+            var tbEventos = db.tbEventos
+                .Select(
+                t => new
+                {
+                    even_Id = t.even_Id,
+                    even_Descripcion = t.even_Descripcion,
+                    even_Estado = t.even_Estado,
+
+                }
+                ).ToList();
+
+            return Json(tbEventos, JsonRequestBehavior.AllowGet);
+        }
+        catch (Exception ex)
+        {
+            ex.ToString();
+            throw;
+        }
+    }
+
+    // GET: /Eventos/Create
+    public ActionResult Create()
         {
             ViewBag.even_UsuarioCrea = new SelectList(db.tbUsuarios, "usu_Id", "usu_NombreUsuario");
             ViewBag.even_UsuarioModifica = new SelectList(db.tbUsuarios, "usu_Id", "usu_NombreUsuario");
