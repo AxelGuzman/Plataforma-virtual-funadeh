@@ -1537,7 +1537,7 @@ namespace FUNADEH_PLATAFORMAVIRTUAL.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Lin_tb_Evaluaciones_Update", evac_IdParameter, evac_DescripcionParameter, evac_TipoEvaluacionParameter, evac_UsuarioModificaParameter, evac_FechaModificaParameter);
         }
     
-        public virtual ObjectResult<string> UDP_Lin_tb_Eventos_Insert(string even_Descripcion, Nullable<int> even_UsuarioCrea, Nullable<System.DateTime> even_FechaCrea)
+        public virtual ObjectResult<UDP_Lin_tb_Eventos_Insert_Result> UDP_Lin_tb_Eventos_Insert(string even_Descripcion, Nullable<int> even_UsuarioCrea, Nullable<System.DateTime> even_FechaCrea)
         {
             var even_DescripcionParameter = even_Descripcion != null ?
                 new ObjectParameter("even_Descripcion", even_Descripcion) :
@@ -1551,7 +1551,7 @@ namespace FUNADEH_PLATAFORMAVIRTUAL.Models
                 new ObjectParameter("even_FechaCrea", even_FechaCrea) :
                 new ObjectParameter("even_FechaCrea", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Lin_tb_Eventos_Insert", even_DescripcionParameter, even_UsuarioCreaParameter, even_FechaCreaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Lin_tb_Eventos_Insert_Result>("UDP_Lin_tb_Eventos_Insert", even_DescripcionParameter, even_UsuarioCreaParameter, even_FechaCreaParameter);
         }
     
         public virtual ObjectResult<string> UDP_Lin_tb_Preguntas_Delete(Nullable<int> preg_Id, Nullable<bool> preg_Estado, Nullable<int> preg_UsuarioModifica, Nullable<System.DateTime> preg_FechaModifica)
@@ -1692,7 +1692,7 @@ namespace FUNADEH_PLATAFORMAVIRTUAL.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Lin_tb_Respuestas_Update", resp_IdParameter, resp_DescripcionParameter, resp_UsuarioModificaParameter, resp_FechaModificaParameter);
         }
     
-        public virtual ObjectResult<string> UDP_Lin_tbEventos_Delete(Nullable<int> even_Id, Nullable<bool> even_Estado, Nullable<int> even_UsuarioModifica, Nullable<System.DateTime> even_FechaModifica)
+        public virtual ObjectResult<UDP_Lin_tbEventos_Delete_Result> UDP_Lin_tbEventos_Delete(Nullable<int> even_Id, Nullable<bool> even_Estado, Nullable<int> even_UsuarioModifica, Nullable<System.DateTime> even_FechaModifica)
         {
             var even_IdParameter = even_Id.HasValue ?
                 new ObjectParameter("even_Id", even_Id) :
@@ -1710,10 +1710,10 @@ namespace FUNADEH_PLATAFORMAVIRTUAL.Models
                 new ObjectParameter("even_FechaModifica", even_FechaModifica) :
                 new ObjectParameter("even_FechaModifica", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Lin_tbEventos_Delete", even_IdParameter, even_EstadoParameter, even_UsuarioModificaParameter, even_FechaModificaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Lin_tbEventos_Delete_Result>("UDP_Lin_tbEventos_Delete", even_IdParameter, even_EstadoParameter, even_UsuarioModificaParameter, even_FechaModificaParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> UDP_Lin_tbEventos_Update(Nullable<int> even_Id, string even_Descripcion, Nullable<int> even_UsuarioModifica, Nullable<System.DateTime> even_FechaModifica)
+        public virtual ObjectResult<UDP_Lin_tbEventos_Update_Result> UDP_Lin_tbEventos_Update(Nullable<int> even_Id, string even_Descripcion, Nullable<int> even_UsuarioModifica, Nullable<System.DateTime> even_FechaModifica)
         {
             var even_IdParameter = even_Id.HasValue ?
                 new ObjectParameter("even_Id", even_Id) :
@@ -1731,7 +1731,7 @@ namespace FUNADEH_PLATAFORMAVIRTUAL.Models
                 new ObjectParameter("even_FechaModifica", even_FechaModifica) :
                 new ObjectParameter("even_FechaModifica", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UDP_Lin_tbEventos_Update", even_IdParameter, even_DescripcionParameter, even_UsuarioModificaParameter, even_FechaModificaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Lin_tbEventos_Update_Result>("UDP_Lin_tbEventos_Update", even_IdParameter, even_DescripcionParameter, even_UsuarioModificaParameter, even_FechaModificaParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> UDP_Lin_tbUsuarios_Aceptar(Nullable<int> usul_Id, Nullable<bool> usul_Estado, string usul_Status)

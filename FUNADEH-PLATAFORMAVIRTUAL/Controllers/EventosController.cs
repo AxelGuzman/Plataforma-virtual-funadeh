@@ -23,7 +23,6 @@ namespace FUNADEH_PLATAFORMAVIRTUAL.Controllers
         }
     
 
-
     [HttpPost]
     public JsonResult llenarTabla()
     {
@@ -59,73 +58,141 @@ namespace FUNADEH_PLATAFORMAVIRTUAL.Controllers
             return View();
         }
 
-        // POST: /Eventos/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="even_Id,even_Descripcion,even_Estado,even_UsuarioCrea,even_FechaCrea,even_UsuarioModifica,even_FechaModifica")] tbEventos tbEventos)
+        public JsonResult Create(tbEventos tbeventos)
         {
-            if (ModelState.IsValid)
+            string msj = "";
+            if (tbeventos.even_Descripcion != "")
             {
-                db.tbEventos.Add(tbEventos);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                //var usuario = (tbUsuarios)Session["Usuario"];
+                try
+                {
+                    db = new GeneracionIngresosEntities();
+                    var list = db.UDP_Lin_tb_Eventos_Insert(tbeventos.even_Descripcion, 1, DateTime.Now);
+                    foreach (UDP_Lin_tb_Eventos_Insert_Result item in list)
+                    {
+                        msj = item.MensajeError + " ";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    msj = "-2";
+                    ex.Message.ToString();
+                }
             }
-
-            ViewBag.even_UsuarioCrea = new SelectList(db.tbUsuarios, "usu_Id", "usu_NombreUsuario", tbEventos.even_UsuarioCrea);
-            ViewBag.even_UsuarioModifica = new SelectList(db.tbUsuarios, "usu_Id", "usu_NombreUsuario", tbEventos.even_UsuarioModifica);
-            return View(tbEventos);
-        }
+            else
+            {
+                msj = "-3";
+            }
+            return Json(msj.Substring(0, 2), JsonRequestBehavior.AllowGet);
+            }
+        
 
         // GET: /Eventos/Edit/5
+        [HttpGet]
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tbEventos tbEventos = db.tbEventos.Find(id);
-            if (tbEventos == null)
+            tbEventos tbEventos = null;
+            try
             {
+                db = new GeneracionIngresosEntities();
+                tbEventos = db.tbEventos.Find(id);
+                if(tbEventos ==null)
+                {
+                    return HttpNotFound();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ex.Message.ToString();
                 return HttpNotFound();
             }
-            ViewBag.even_UsuarioCrea = new SelectList(db.tbUsuarios, "usu_Id", "usu_NombreUsuario", tbEventos.even_UsuarioCrea);
-            ViewBag.even_UsuarioModifica = new SelectList(db.tbUsuarios, "usu_Id", "usu_NombreUsuario", tbEventos.even_UsuarioModifica);
-            return View(tbEventos);
+            var eventos = new tbEventos
+            {
+                even_Id = tbEventos.even_Id,
+                even_Descripcion = tbEventos.even_Descripcion,
+                even_Estado = tbEventos.even_Estado,
+                even_UsuarioCrea = tbEventos.even_UsuarioCrea,
+                even_FechaCrea = tbEventos.even_FechaCrea,
+                even_UsuarioModifica = tbEventos.even_UsuarioModifica,
+                even_FechaModifica = tbEventos.even_FechaModifica,
+                tbUsuarios = new tbUsuarios { usu_NombreUsuario = IsNull(tbEventos.tbUsuarios).usu_NombreUsuario },
+                tbUsuarios1 = new tbUsuarios { usu_NombreUsuario = IsNull(tbEventos.tbUsuarios1).usu_NombreUsuario }
+
+            };
+            return Json(eventos, JsonRequestBehavior.AllowGet);
+
         }
 
-        // POST: /Eventos/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="even_Id,even_Descripcion,even_Estado,even_UsuarioCrea,even_FechaCrea,even_UsuarioModifica,even_FechaModifica")] tbEventos tbEventos)
+        public JsonResult Edit(tbEventos tbEventos)
         {
-            if (ModelState.IsValid)
+            string msj = "";
+            if(tbEventos.even_Id !=0 && tbEventos.even_Descripcion !="")
             {
-                db.Entry(tbEventos).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                //var id = (int)Session["id"];
+                //var usuario =(tbUsuarios)Session["Usuario"]
+                try
+                {
+                    db = new GeneracionIngresosEntities();
+                    var list = db.UDP_Lin_tbEventos_Update(tbEventos.even_Id, tbEventos.even_Descripcion, 1, DateTime.Now);
+                    foreach(UDP_Lin_tbEventos_Update_Result item in list)
+                    {
+                        msj = item.MensajeError + "";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    msj = "-2";
+                    ex.Message.ToString();
+                }
             }
-            ViewBag.even_UsuarioCrea = new SelectList(db.tbUsuarios, "usu_Id", "usu_NombreUsuario", tbEventos.even_UsuarioCrea);
-            ViewBag.even_UsuarioModifica = new SelectList(db.tbUsuarios, "usu_Id", "usu_NombreUsuario", tbEventos.even_UsuarioModifica);
-            return View(tbEventos);
+            else
+            {
+                msj = "-3";
+            }
+            return Json(msj.Substring(0, 2), JsonRequestBehavior.AllowGet);
+                
         }
 
         // GET: /Eventos/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(tbEventos tbEventos)
         {
-            if (id == null)
+            string msj = "";
+            //string RazonInactivo = "Se ha Inhabilitado este Registro";
+
+            if(tbEventos.even_Id != 0)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                var id = (int)Session["id"];
+                var usuario = (tbUsuarios)Session["Usuario"];
+                try
+                {
+                    db = new GeneracionIngresosEntities();
+                    var list = db.UDP_Lin_tbEventos_Delete(tbEventos.even_Id, false, 1, DateTime.Now);
+                    foreach (UDP_Lin_tbEventos_Delete_Result item in list)
+                    {
+                        msj = item.MensajeError + " ";
+                    }
+
+                }
+                catch (Exception ex)
+                {
+
+                    msj = "-2";
+                    ex.Message.ToString();
+                }
+                //Session.Remove("id");
             }
-            tbEventos tbEventos = db.tbEventos.Find(id);
-            if (tbEventos == null)
+            else
             {
-                return HttpNotFound();
+                msj = "-3";
             }
-            return View(tbEventos);
+            return Json(msj.Substring(0, 2), JsonRequestBehavior.AllowGet);
         }
 
         // POST: /Eventos/Delete/5
@@ -139,6 +206,17 @@ namespace FUNADEH_PLATAFORMAVIRTUAL.Controllers
             return RedirectToAction("Index");
         }
 
+        protected tbUsuarios IsNull(tbUsuarios valor)
+        {
+            if (valor != null)
+            {
+                return valor;
+            }
+            else
+            {
+                return new tbUsuarios { usu_NombreUsuario = "" };
+            }
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

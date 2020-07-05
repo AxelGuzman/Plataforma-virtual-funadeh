@@ -58,25 +58,27 @@
 @Html.Partial("_Edit", new FUNADEH_PLATAFORMAVIRTUAL.Models.tbEventos())
 @Html.Partial("_Detalles", new FUNADEH_PLATAFORMAVIRTUAL.Models.tbEventos())
  @section Styles {
-   
-
-@Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
-@Styles.Render("~/Content/plugins/izitoast/iziToast")
-@Styles.Render("~/Content/plugins/izitoast/iziToast.min")
+        @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+        @Styles.Render("~/Content/plugins/izitoast/iziToast.css")
+        @Styles.Render("~/Content/plugins/izitoast/iziToast.min.css")
 }
 
 @section Scripts {
-
-@Scripts.Render("~/Scripts/plugins/dataTables/DatatablesConfigurations.js")
-@Scripts.Render("~/Scripts/plugins/dataTables/datatables.min.js")
-
+    @Scripts.Render("~/Scripts/plugins/dataTables/datatables.min.js")
+    @Scripts.Render("~/Scripts/plugins/dataTables/DatatablesConfigurations.js")
     @Scripts.Render("~/Scripts/app/General/general.js")
-
-
-   @Scripts.Render("~/Scripts/plugins/iziToast/iziToast.min.js")
+    @Scripts.Render("~/Scripts/plugins/iziToast/iziToast.min.js")
     @Scripts.Render("~/Scripts/plugins/iziToast/iziToast.js")
     @Scripts.Render("~/Scripts/app/General/Eventos.js")
+@Scripts.Render("~/Scripts/app/General/SerializeDate.js")
+
+
   )
-    
+
 
 }
+
+
+
+
+

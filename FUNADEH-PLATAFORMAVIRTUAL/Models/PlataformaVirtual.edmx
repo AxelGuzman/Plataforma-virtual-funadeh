@@ -2628,7 +2628,7 @@
             <Parameter Name="evac_UsuarioModifica" Mode="In" Type="Int32" />
             <Parameter Name="evac_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Lin_tb_Eventos_Insert" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Lin_tb_Eventos_Insert" ReturnType="Collection(GeneracionIngresosModel.UDP_Lin_tb_Eventos_Insert_Result)">
             <Parameter Name="even_Descripcion" Mode="In" Type="String" />
             <Parameter Name="even_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="even_FechaCrea" Mode="In" Type="DateTime" />
@@ -2672,13 +2672,13 @@
             <Parameter Name="resp_UsuarioModifica" Mode="In" Type="Int32" />
             <Parameter Name="resp_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Lin_tbEventos_Delete" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Lin_tbEventos_Delete" ReturnType="Collection(GeneracionIngresosModel.UDP_Lin_tbEventos_Delete_Result)">
             <Parameter Name="even_Id" Mode="In" Type="Int32" />
             <Parameter Name="even_Estado" Mode="In" Type="Boolean" />
             <Parameter Name="even_UsuarioModifica" Mode="In" Type="Int32" />
             <Parameter Name="even_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Lin_tbEventos_Update" ReturnType="Collection(Int32)">
+          <FunctionImport Name="UDP_Lin_tbEventos_Update" ReturnType="Collection(GeneracionIngresosModel.UDP_Lin_tbEventos_Update_Result)">
             <Parameter Name="even_Id" Mode="In" Type="Int32" />
             <Parameter Name="even_Descripcion" Mode="In" Type="String" />
             <Parameter Name="even_UsuarioModifica" Mode="In" Type="Int32" />
@@ -3981,6 +3981,15 @@
           <Property Type="DateTime" Name="cap_Fecha" Nullable="false" />
           <Property Type="String" Name="NombreCompleto" Nullable="false" MaxLength="101" />
         </ComplexType>
+        <ComplexType Name="UDP_Lin_tbEventos_Delete_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="UDP_Lin_tb_Eventos_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="UDP_Lin_tbEventos_Update_Result">
+          <Property Type="Int32" Name="MensajeError" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4452,15 +4461,33 @@
           <FunctionImportMapping FunctionImportName="UDP_Lin_tb_Evaluaciones_Delete" FunctionName="GeneracionIngresosModel.Store.UDP_Lin_tb_Evaluaciones_Delete" />
           <FunctionImportMapping FunctionImportName="UDP_Lin_tb_Evaluaciones_Insert" FunctionName="GeneracionIngresosModel.Store.UDP_Lin_tb_Evaluaciones_Insert" />
           <FunctionImportMapping FunctionImportName="UDP_Lin_tb_Evaluaciones_Update" FunctionName="GeneracionIngresosModel.Store.UDP_Lin_tb_Evaluaciones_Update" />
-          <FunctionImportMapping FunctionImportName="UDP_Lin_tb_Eventos_Insert" FunctionName="GeneracionIngresosModel.Store.UDP_Lin_tb_Eventos_Insert" />
+          <FunctionImportMapping FunctionImportName="UDP_Lin_tb_Eventos_Insert" FunctionName="GeneracionIngresosModel.Store.UDP_Lin_tb_Eventos_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GeneracionIngresosModel.UDP_Lin_tb_Eventos_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Lin_tb_Preguntas_Delete" FunctionName="GeneracionIngresosModel.Store.UDP_Lin_tb_Preguntas_Delete" />
           <FunctionImportMapping FunctionImportName="UDP_Lin_tb_Preguntas_Insert" FunctionName="GeneracionIngresosModel.Store.UDP_Lin_tb_Preguntas_Insert" />
           <FunctionImportMapping FunctionImportName="UDP_Lin_tb_Preguntas_Update" FunctionName="GeneracionIngresosModel.Store.UDP_Lin_tb_Preguntas_Update" />
           <FunctionImportMapping FunctionImportName="UDP_Lin_tb_Respuestas_Delete" FunctionName="GeneracionIngresosModel.Store.UDP_Lin_tb_Respuestas_Delete" />
           <FunctionImportMapping FunctionImportName="UDP_Lin_tb_Respuestas_Insert" FunctionName="GeneracionIngresosModel.Store.UDP_Lin_tb_Respuestas_Insert" />
           <FunctionImportMapping FunctionImportName="UDP_Lin_tb_Respuestas_Update" FunctionName="GeneracionIngresosModel.Store.UDP_Lin_tb_Respuestas_Update" />
-          <FunctionImportMapping FunctionImportName="UDP_Lin_tbEventos_Delete" FunctionName="GeneracionIngresosModel.Store.UDP_Lin_tbEventos_Delete" />
-          <FunctionImportMapping FunctionImportName="UDP_Lin_tbEventos_Update" FunctionName="GeneracionIngresosModel.Store.UDP_Lin_tbEventos_Update" />
+          <FunctionImportMapping FunctionImportName="UDP_Lin_tbEventos_Delete" FunctionName="GeneracionIngresosModel.Store.UDP_Lin_tbEventos_Delete" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GeneracionIngresosModel.UDP_Lin_tbEventos_Delete_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Lin_tbEventos_Update" FunctionName="GeneracionIngresosModel.Store.UDP_Lin_tbEventos_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GeneracionIngresosModel.UDP_Lin_tbEventos_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Lin_tbUsuarios_Aceptar" FunctionName="GeneracionIngresosModel.Store.UDP_Lin_tbUsuarios_Aceptar" />
           </EntityContainerMapping>
       </Mapping>
