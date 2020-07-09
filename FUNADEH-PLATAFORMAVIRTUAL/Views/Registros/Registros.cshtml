@@ -1,4 +1,9 @@
-﻿
+﻿@model FUNADEH_PLATAFORMAVIRTUAL.Models.tbBeneficiarios
+@using FUNADEH_PLATAFORMAVIRTUAL.Models
+
+@{ 
+    tbUsuariosLinea Usul = new tbUsuariosLinea();
+}
 @{
     Layout = null;
 }
@@ -36,6 +41,7 @@
                 <form method="get" class="form-horizontal">
                     <div class="form-group">
                         <label class="col-sm-1 control-label">Identidad</label>
+                        @Html.DisplayFor(model => model.ben_Identificacion)
                         <div class="col-sm-5"><input type="text" class="form-control" placeholder="No Incluya Guiones"></div>
                         <label class="col-sm-1 control-label">Nivel Académico</label>
                         <div class="col-sm-5">
@@ -143,6 +149,7 @@
                     <br />
                     <div class="form-group">
                         <label class="col-sm-1 control-label">Correo Electrónico</label>
+                        @Html.EditorFor(model => Usul.usul_CorreoElectronico)
                         <div class="col-sm-5"><input type="text" class="form-control"></div>
                         <label class="col-sm-1 control-label">Contraseña</label>
                         <div class="col-sm-5"><input type="text" class="form-control"></div>

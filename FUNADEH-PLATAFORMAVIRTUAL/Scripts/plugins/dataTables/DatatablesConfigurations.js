@@ -23,7 +23,7 @@ $(document).ready(function () {
             });
             col = col + 1;
         }
-        //Si la columna tiene el nombre de ID se ocultara al usuario, la informacion seguira en el Json de DataTables
+    //    //Si la columna tiene el nombre de ID se ocultara al usuario, la informacion seguira en el Json de DataTables
         else if (campo.toUpperCase() == "ID") {
             columnas.push({
                 data: campo,
@@ -34,7 +34,7 @@ $(document).ready(function () {
 
 
 
-        //Si la columa tiene el nombre de "Acciones", automaticamente insertara los botones de Detalles y Editar
+    //    //Si la columa tiene el nombre de "Acciones", automaticamente insertara los botones de Detalles y Editar
         else if (campo == "Acciones") {
             columnas.push({
                 data: campo,
@@ -84,6 +84,7 @@ function CallDetalles(btn) {
     var tr = $(btn).closest('tr');
     var row = tabla.row(tr);
     var id = row.data().ID;
+    alert($(btn).attr("class"));
     tablaDetalles(id);
 }
 function CallEditar(btn) {
