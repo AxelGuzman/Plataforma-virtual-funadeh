@@ -2340,7 +2340,7 @@
             <Parameter Name="Hasta" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Gral_DiplomaCapacitacion" ReturnType="Collection(GeneracionIngresosModel.UDP_Gral_DiplomaCapacitacion_Result)">
-            <Parameter Name="cap_Id" Mode="In" Type="Int32" />
+          <Parameter Name="cap_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="UDP_Gral_tbBeneficiarios_Insert" ReturnType="Collection(String)">
             <Parameter Name="ben_Identificacion" Mode="In" Type="String" />
