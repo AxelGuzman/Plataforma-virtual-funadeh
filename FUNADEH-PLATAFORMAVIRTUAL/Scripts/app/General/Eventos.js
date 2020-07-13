@@ -21,20 +21,42 @@ function tablaEditar(ID) {
 
 function tablaDetalles(ID) {
     id = ID;
-        _ajax(null,
-            'Eventos/Edit/' + ID,
-            'GET',
-            function (obj) {
-                if (obj != "-1" && obj != "-2" && obj != "-3") {
-                    $("#ModalDetalles").find("#even_Descripcion")["0"].innerText = obj.even_Descripcion;
-                    $("#ModalDetalles").find("#even_FechaCrea")["0"].innerText = FechaFormato(obj.even_FechaCrea);
-                    $("#ModalDetalles").find("#even_FechaModifica")["0"].innerText = FechaFormato(obj.even_FechaModifica);
-                    $("#ModalDetalles").find("#tbUsuarios_usu_NombreUsuario")["0"].innerText = obj.tbUsuarios_usu_NombreUsuario;
-                    $("#ModalDetalles").find("#tbUsuarios1_usu_NombreUsuario")["0"].innerText = obj.tbUsuarios1.usu_NombreUsuario;
-                    //$("#ModalDetalles").find("#btnEditar")["0"].dataset.id = id;
-                    $('#ModalDetalles').modal('show');
-                }
-            });
+    $.ajax(
+        {
+            url: '/Eventos/Edit/' + ID,
+            method: 'GET',
+            data: {
+                id: ID
+            }
+        }
+    ).done(
+        function (obj) {
+            console.log(obj);
+            if (obj != "-1" && obj != "-2" && obj != "-3") {
+                $("#ModalDetalles").find("#even_Descripcion")["0"].innerText = obj.even_Descripcion;
+                $("#ModalDetalles").find("#even_FechaCrea")["0"].innerText = FechaFormato(obj.even_FechaCrea);
+                $("#ModalDetalles").find("#even_FechaModifica")["0"].innerText = FechaFormato(obj.even_FechaModifica);
+                $("#ModalDetalles").find("#tbUsuarios_usu_NombreUsuario")["0"].innerText = obj.tbUsuarios_usu_NombreUsuario;
+                $("#ModalDetalles").find("#tbUsuarios1_usu_NombreUsuario")["0"].innerText = obj.tbUsuarios1.usu_NombreUsuario;
+                //$("#ModalDetalles").find("#btnEditar")["0"].dataset.id = id;
+                $('#ModalDetalles').modal('show');
+            }
+        }
+    );
+        //_ajax(null,
+        //    'Eventos/Edit/' + ID,
+        //    'GET',
+        //    function (obj) {
+        //        if (obj != "-1" && obj != "-2" && obj != "-3") {
+        //            $("#ModalDetalles").find("#even_Descripcion")["0"].innerText = obj.even_Descripcion;
+        //            $("#ModalDetalles").find("#even_FechaCrea")["0"].innerText = FechaFormato(obj.even_FechaCrea);
+        //            $("#ModalDetalles").find("#even_FechaModifica")["0"].innerText = FechaFormato(obj.even_FechaModifica);
+        //            $("#ModalDetalles").find("#tbUsuarios_usu_NombreUsuario")["0"].innerText = obj.tbUsuarios_usu_NombreUsuario;
+        //            $("#ModalDetalles").find("#tbUsuarios1_usu_NombreUsuario")["0"].innerText = obj.tbUsuarios1.usu_NombreUsuario;
+        //            //$("#ModalDetalles").find("#btnEditar")["0"].dataset.id = id;
+        //            $('#ModalDetalles').modal('show');
+        //        }
+        //    });
     }
 
 
@@ -48,6 +70,7 @@ function llenarTabla() {
             if (validarDT(Lista)) {
                 return null;
             }
+            console.log(Lista);
             $.each(Lista, function (index, value) {
 
                 var Acciones = value.even_Estado == 1
