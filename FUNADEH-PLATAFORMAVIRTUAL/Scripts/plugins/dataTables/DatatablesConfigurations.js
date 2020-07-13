@@ -82,6 +82,9 @@ $(document).ready(function () {
 });
 function CallDetalles(btn) {
     var tr = $(btn).closest('tr');
+    var row = tabla.row(tr);
+    var id = row.data().ID;
+    alert($(btn).attr("class"));
     //var col = tr.children('td:first-child');
     //var row = tabla.row(tr);
     var id = tr.children('td:first-child').text();//row.data().ID;
@@ -92,7 +95,6 @@ function CallDetalles(btn) {
     tablaDetalles(id);
 }
 function CallEditar(btn) {
-    var tr = $(btn).closest('tr');
     var row = tabla.row(tr);
     var id = row.data().ID;
     tablaEditar(id);
