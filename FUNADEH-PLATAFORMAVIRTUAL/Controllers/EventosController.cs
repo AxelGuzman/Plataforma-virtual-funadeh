@@ -12,7 +12,7 @@ namespace FUNADEH_PLATAFORMAVIRTUAL.Controllers
 {
     public class EventosController : Controller
     {
-        private GeneracionIngresosEntities db = new GeneracionIngresosEntities();
+        private DB_A6458A_FunadehGenesisEntities db = new DB_A6458A_FunadehGenesisEntities();
 
 
         public ActionResult Index()
@@ -28,7 +28,7 @@ namespace FUNADEH_PLATAFORMAVIRTUAL.Controllers
     {
         try
         {
-            db = new GeneracionIngresosEntities();
+            db = new DB_A6458A_FunadehGenesisEntities();
 
             var tbEventos = db.tbEventos
                 .Select(
@@ -67,7 +67,7 @@ namespace FUNADEH_PLATAFORMAVIRTUAL.Controllers
                 //var usuario = (tbUsuarios)Session["Usuario"];
                 try
                 {
-                    db = new GeneracionIngresosEntities();
+                    db = new DB_A6458A_FunadehGenesisEntities();
                     var list = db.UDP_Lin_tb_Eventos_Insert(tbeventos.even_Descripcion, 1, DateTime.Now);
                     foreach (UDP_Lin_tb_Eventos_Insert_Result item in list)
                     {
@@ -99,7 +99,7 @@ namespace FUNADEH_PLATAFORMAVIRTUAL.Controllers
             tbEventos tbEventos = null;
             try
             {
-                db = new GeneracionIngresosEntities();
+                db = new DB_A6458A_FunadehGenesisEntities();
                 tbEventos = db.tbEventos.Find(id);
                 if(tbEventos ==null)
                 {
@@ -139,7 +139,7 @@ namespace FUNADEH_PLATAFORMAVIRTUAL.Controllers
                 //var usuario =(tbUsuarios)Session["Usuario"]
                 try
                 {
-                    db = new GeneracionIngresosEntities();
+                    db = new DB_A6458A_FunadehGenesisEntities();
                     var list = db.UDP_Lin_tbEventos_Update(tbEventos.even_Id, tbEventos.even_Descripcion, 1, DateTime.Now);
                     foreach(UDP_Lin_tbEventos_Update_Result item in list)
                     {
@@ -172,7 +172,7 @@ namespace FUNADEH_PLATAFORMAVIRTUAL.Controllers
                 var usuario = (tbUsuarios)Session["Usuario"];
                 try
                 {
-                    db = new GeneracionIngresosEntities();
+                    db = new DB_A6458A_FunadehGenesisEntities();
                     var list = db.UDP_Lin_tbEventos_Delete(tbEventos.even_Id, false, 1, DateTime.Now);
                     foreach (UDP_Lin_tbEventos_Delete_Result item in list)
                     {

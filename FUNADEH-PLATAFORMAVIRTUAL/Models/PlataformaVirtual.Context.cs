@@ -15,10 +15,10 @@ namespace FUNADEH_PLATAFORMAVIRTUAL.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class GeneracionIngresosEntities : DbContext
+    public partial class DB_A6458A_FunadehGenesisEntities : DbContext
     {
-        public GeneracionIngresosEntities()
-            : base("name=GeneracionIngresosEntities")
+        public DB_A6458A_FunadehGenesisEntities()
+            : base("name=DB_A6458A_FunadehGenesisEntities")
         {
         }
     
@@ -27,7 +27,6 @@ namespace FUNADEH_PLATAFORMAVIRTUAL.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<tbEmprendimiento> tbEmprendimiento { get; set; }
         public virtual DbSet<tbAccesoRol> tbAccesoRol { get; set; }
         public virtual DbSet<tbPermisos> tbPermisos { get; set; }
         public virtual DbSet<tbRoles> tbRoles { get; set; }
@@ -45,6 +44,7 @@ namespace FUNADEH_PLATAFORMAVIRTUAL.Models
         public virtual DbSet<tbCapacitador> tbCapacitador { get; set; }
         public virtual DbSet<tbCentroAlcance> tbCentroAlcance { get; set; }
         public virtual DbSet<tbEmpleabilidad> tbEmpleabilidad { get; set; }
+        public virtual DbSet<tbEmprendimiento> tbEmprendimiento { get; set; }
         public virtual DbSet<tbEmpresa> tbEmpresa { get; set; }
         public virtual DbSet<tbSeguimiento> tbSeguimiento { get; set; }
         public virtual DbSet<tbEvaluaciones> tbEvaluaciones { get; set; }

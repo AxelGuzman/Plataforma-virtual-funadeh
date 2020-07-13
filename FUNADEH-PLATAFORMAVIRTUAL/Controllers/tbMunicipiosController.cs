@@ -12,7 +12,7 @@ namespace FUNADEH_PLATAFORMAVIRTUAL.Controllers
 {
     public class tbMunicipiosController : Controller
     {
-        private GeneracionIngresosEntities db = new GeneracionIngresosEntities();
+        private DB_A6458A_FunadehGenesisEntities db = new DB_A6458A_FunadehGenesisEntities();
 
         // GET: /tbMunicipios/
         public ActionResult Index()
