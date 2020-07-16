@@ -7,23 +7,28 @@ var id = 0;
 
 //Funciones GET
 function tablaEditar(ID) {
-        id= ID ;
-        _ajax(null,
-            '/Eventos/Edit/' + ID,
-            'GET',
+    id = ID;
+    debugger 
+    $.ajax({
+        url: '/Eventos/Detalles/' + ID,
+        method: 'GET',
+        data: {
+            id: ID
+        }
+    }).done(
             function (obj) {
                 if (obj != "-1" && obj != "-2" && obj != "-3") {
                     $("#FormEditar").find("#even_Descripcion").val(obj.even_Descripcion);
                     $("#ModalEditar").modal('show');
                 }
-            });
+            } );
     }
 
 function tablaDetalles(ID) {
     id = ID;
     $.ajax(
         {
-            url: '/Eventos/Edit/' + ID,
+            url: '/Eventos/Detalles/' + ID,
             method: 'GET',
             data: {
                 id: ID
@@ -106,9 +111,10 @@ $("#btnAgregar").click(function () {
 });
 
 $("#btnEditar").click(function () {
-    _ajax(null,
-        '/Eventos/Edit/' + id,
-        'GET',
+    $.ajax({
+        url : '/Eventos/Edit/' + id,
+        method:'GET'
+    }).done(
         function (obj) {
             if (obj != "-1" && obj != "-2" && obj != "-3") {
                 CierraPopups();
@@ -178,14 +184,19 @@ $("#Inactivar").click(function () {
 });
 
 $("#btnActualizar").click(function () {
-    var data = $("FormEditar").serializeArray();
+    var data = $("#FormEditar").serializeArray();
     data = serializar(data);
     if (data != null) {
-        data.even_Id = id,
+        data.even_Id = id;
         data = JSON.stringify({ tbEventos: data });
-        _ajax(data,
-            '/Eventos/Edit',
-            'POST',
+        debugger
+        $.ajax({
+            dataType: "json",
+            contentType: "application/json; charset = utf-8",
+            data: data,
+            url: '/Eventos/Edit',
+            method: 'POST',
+        }).done(
             function (obj) {
                 if (obj != "-1" && obj != "-2" && obj != "-3") {
                     CierraPopups();

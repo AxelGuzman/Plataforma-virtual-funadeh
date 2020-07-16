@@ -90,7 +90,7 @@ namespace FUNADEH_PLATAFORMAVIRTUAL.Controllers
 
         // GET: /Eventos/Edit/5
         [HttpGet]
-        public ActionResult Edit(int? id)
+        public ActionResult Detalles(int? id)
         {
             if (id == null)
             {
@@ -143,7 +143,7 @@ namespace FUNADEH_PLATAFORMAVIRTUAL.Controllers
                     var list = db.UDP_Lin_tbEventos_Update(tbEventos.even_Id, tbEventos.even_Descripcion, 1, DateTime.Now);
                     foreach(UDP_Lin_tbEventos_Update_Result item in list)
                     {
-                        msj = item.MensajeError + "";
+                        msj = item.MensajeError + "  ";
                     }
                 }
                 catch (Exception ex)
